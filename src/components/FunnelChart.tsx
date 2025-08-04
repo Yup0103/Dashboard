@@ -2,17 +2,21 @@ import { ResponsiveFunnel } from '@nivo/funnel';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingDownIcon } from "lucide-react";
 
-const CustomTooltip = ({ datum }: any) => (
-  <div className="bg-gray-900 border border-gray-700 rounded-lg p-3 shadow-lg">
-    <div className="text-white font-medium">{datum.id}</div>
-    <div className="text-purple-300 text-sm">
-      Value: <span className="font-semibold">{datum.value.toLocaleString()}</span>
+const CustomTooltip = ({ datum }: any) => {
+  if (!datum) return null;
+  
+  return (
+    <div className="bg-gray-900 border border-gray-700 rounded-lg p-3 shadow-lg">
+      <div className="text-white font-medium">{datum.id}</div>
+      <div className="text-purple-300 text-sm">
+        Value: <span className="font-semibold">{datum.value?.toLocaleString()}</span>
+      </div>
+      <div className="text-purple-300 text-sm">
+        Percentage: <span className="font-semibold">{datum.formattedValue}</span>
+      </div>
     </div>
-    <div className="text-purple-300 text-sm">
-      Percentage: <span className="font-semibold">{datum.formattedValue}</span>
-    </div>
-  </div>
-);
+  );
+};
 
 const FunnelChart = () => {
   const funnelData = [
