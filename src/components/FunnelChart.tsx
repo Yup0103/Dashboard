@@ -1,4 +1,3 @@
-
 import { ResponsiveFunnel } from '@nivo/funnel';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingDownIcon } from "lucide-react";
@@ -96,7 +95,7 @@ const FunnelChart = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4">
             {performanceMetrics.map((metric, index) => (
               <div key={index} className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-lg p-4 border border-purple-500/20">
                 <div className="flex items-center justify-between mb-2">
