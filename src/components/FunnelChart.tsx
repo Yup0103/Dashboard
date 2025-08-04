@@ -23,12 +23,13 @@ interface TooltipProps {
     formattedValue: string | number;
     color: string;
   };
+  allData: FunnelData[];
 }
 
-const CustomTooltip = ({ part }: TooltipProps): JSX.Element | null => {
-  if (!part || !part.data) return null;
+const CustomTooltip = ({ part, allData }: TooltipProps): JSX.Element | null => {
+  if (!part || !part.data || !allData || allData.length === 0) return null;
   
-  const maxValue = data[0].value; // First item (Impressions) has the max value
+  const maxValue = allData[0].value; // First item (Impressions) has the max value
   const percentage = ((part.data.value / maxValue) * 100).toFixed(1);
   const IconComponent = part.data.icon || UsersIcon;
   
@@ -53,7 +54,7 @@ const CustomTooltip = ({ part }: TooltipProps): JSX.Element | null => {
       
       {/* All Stages Overview */}
       <div className="space-y-3">
-        {data.map((item, index) => {
+        {allData.map((item, index) => {
           const isCurrentStage = item.id === part.data.id;
           const stagePercentage = ((item.value / maxValue) * 100).toFixed(1);
           
@@ -189,6 +190,10 @@ const FunnelChart = ({
   ],
   showDropOff = true,
 }: FunnelChartProps): JSX.Element => {
+  const CustomTooltipWrapper = (props: any) => (
+    <CustomTooltip {...props} allData={data} />
+  );
+
   const funnelProps = {
     data,
     margin,
@@ -210,7 +215,7 @@ const FunnelChart = ({
     theme,
     defs,
     fill,
-    tooltip: CustomTooltip,
+    tooltip: CustomTooltipWrapper,
     animate: true,
     motionStiffness: 90,
     motionDamping: 15
