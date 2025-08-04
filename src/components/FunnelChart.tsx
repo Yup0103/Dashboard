@@ -27,37 +27,37 @@ const FunnelChart = () => {
   ];
 
   return (
-    <Card className="glass-effect-dark">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <TrendingDownIcon className="w-6 h-6 text-purple-400" />
+    <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-purple-100 flex items-center gap-2 text-lg">
+          <TrendingDownIcon className="w-5 h-5 text-purple-400" />
           Conversion Funnel
         </CardTitle>
-        <CardDescription className="text-purple-300">
-          Track your funnel conversion rates
+        <CardDescription className="text-purple-300 text-sm">
+          Track funnel conversion rates
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="h-64 glass-effect rounded-lg p-4">
+      <CardContent className="pt-0">
+        <div className="h-48 bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-lg p-3 border border-purple-500/20">
           <ResponsiveFunnel
             data={funnelData}
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+            margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
             valueFormat=" >-.0f"
             colors={['#8B5CF6', '#A855F7', '#C084FC', '#DDD6FE']}
-            borderWidth={2}
+            borderWidth={1}
             labelColor={{ from: 'color', modifiers: [['darker', 3]] }}
-            beforeSeparatorLength={100}
-            beforeSeparatorOffset={20}
-            afterSeparatorLength={100}
-            afterSeparatorOffset={20}
-            currentPartSizeExtension={10}
-            currentBorderWidth={40}
+            beforeSeparatorLength={60}
+            beforeSeparatorOffset={10}
+            afterSeparatorLength={60}
+            afterSeparatorOffset={10}
+            currentPartSizeExtension={5}
+            currentBorderWidth={20}
             motionConfig="wobbly"
             tooltip={CustomTooltip}
             theme={{
               background: 'transparent',
               text: {
-                fontSize: 12,
+                fontSize: 10,
                 fill: '#E5E7EB',
               },
               tooltip: {
