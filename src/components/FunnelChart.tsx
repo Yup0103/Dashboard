@@ -37,7 +37,7 @@ const FunnelChart = () => {
   return (
     <div className="space-y-6">
       {/* Header Section */}
-      <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
+      <Card className="glass-effect-dark">
         <CardHeader>
           <CardTitle className="text-purple-100 flex items-center gap-2">
             <TrendingDownIcon className="w-6 h-6 text-purple-400" />
@@ -48,7 +48,7 @@ const FunnelChart = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-64 bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-lg p-4">
+          <div className="h-64 glass-effect rounded-lg p-4">
             <ResponsiveFunnel
               data={funnelData}
               margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
@@ -86,7 +86,7 @@ const FunnelChart = () => {
       </Card>
 
       {/* Performance Metrics Grid */}
-      <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
+      <Card className="glass-effect-dark">
         <CardHeader>
           <CardTitle className="text-purple-100 flex items-center gap-2">
             📊 Funnel Performance
@@ -98,7 +98,7 @@ const FunnelChart = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {performanceMetrics.map((metric, index) => (
-              <div key={index} className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-lg p-4 border border-purple-500/20">
+              <div key={index} className="glass-effect rounded-lg p-4 border border-purple-500/20 metric-card-hover">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-purple-300 text-sm">{metric.label}</span>
                   <span className="text-lg">{metric.icon}</span>
