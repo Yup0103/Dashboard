@@ -28,11 +28,11 @@ interface TooltipProps {
 
 const CustomTooltip = ({ part, allData }: TooltipProps): JSX.Element | null => {
   if (!part || !part.data || !allData || allData.length === 0) return null;
-  
+
   const maxValue = allData[0].value; // First item (Impressions) has the max value
   const percentage = ((part.data.value / maxValue) * 100).toFixed(1);
   const IconComponent = part.data.icon || UsersIcon;
-  
+
   return (
     <div className="bg-[#1A0B2E]/95 backdrop-blur-sm text-white p-6 rounded-lg shadow-xl border border-purple-500/30 min-w-[320px]">
       {/* Stage Analysis Header */}
@@ -40,7 +40,7 @@ const CustomTooltip = ({ part, allData }: TooltipProps): JSX.Element | null => {
         <UsersIcon className="w-5 h-5 text-purple-300" />
         <h3 className="text-sm font-semibold text-purple-200">Stage Analysis</h3>
       </div>
-      
+
       {/* Current Stage Details */}
       <div className="flex items-center gap-3 mb-4 p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
         <div className="p-2 bg-purple-500/20 rounded-lg">
@@ -51,13 +51,13 @@ const CustomTooltip = ({ part, allData }: TooltipProps): JSX.Element | null => {
           <p className="text-sm text-purple-300">{percentage}% of total funnel</p>
         </div>
       </div>
-      
+
       {/* All Stages Overview */}
       <div className="space-y-3">
         {allData.map((item, index) => {
           const isCurrentStage = item.id === part.data.id;
           const stagePercentage = ((item.value / maxValue) * 100).toFixed(1);
-          
+
           return (
             <div key={item.id} className={`flex items-center justify-between p-2 rounded ${
               isCurrentStage ? 'bg-purple-500/20 border border-purple-500/30' : 'bg-transparent'
@@ -227,19 +227,19 @@ const FunnelChart = ({
   const overallRate = ((data[2].value / data[0].value) * 100).toFixed(1);
 
   return (
-    <div className="relative w-full h-full min-h-[400px]">
+    <div className="w-full h-full space-y-6">
       {/* Main Funnel Chart */}
-      <div className="w-full h-full">
+      <div className="w-full h-[300px]">
         <ResponsiveFunnel<FunnelData> {...funnelProps} />
       </div>
-      
-      {/* Funnel Performance Panel - Separate Section */}
-      <div className="absolute top-4 right-4 bg-[#1A0B2E]/95 backdrop-blur-sm rounded-lg border border-purple-500/20 p-4 min-w-[280px]">
+
+      {/* Funnel Performance Panel - Below Chart */}
+      <div className="bg-[#1A0B2E]/95 backdrop-blur-sm rounded-lg border border-purple-500/20 p-4">
         <div className="flex items-center gap-2 mb-4">
           <BarChart3Icon className="w-5 h-5 text-purple-300" />
           <h3 className="text-sm font-semibold text-purple-200">Funnel Performance</h3>
         </div>
-        
+
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-3 bg-[#2D1B69]/30 rounded-lg border border-purple-500/20">
