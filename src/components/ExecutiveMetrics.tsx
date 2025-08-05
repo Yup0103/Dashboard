@@ -817,10 +817,10 @@ const MetricSection: React.FC<{
         
         {/* Collapsible Content */}
         <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isCollapsed ? 'max-h-0 opacity-0' : 'max-h-[2000px] opacity-100'
+          isCollapsed ? 'max-h-0 opacity-0' : 'max-h-[3000px] opacity-100'
         }`}>
           <div className="p-6">
-            <div className={`grid ${gridColsClass} gap-6`}>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4">
               {section.metrics.map((metric, index) => (
                 <MetricCard key={index} metric={metric} />
               ))}
@@ -1062,15 +1062,15 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
         </div>
 
         {/* Main Content Area */}
-        <div className="p-6 space-y-8">
+        <div className="p-6 space-y-12">
           {/* Executive Summary Section */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <ExecutiveSummary />
           </div>
 
           {/* Executive Priority Section */}
           {(selectedPriority === 'all' || selectedPriority === 'executive') && (
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="priority-badge px-3 py-1 rounded-lg">
                   <span className="text-emerald-400 font-semibold text-sm">Executive Priority</span>
@@ -1078,7 +1078,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 <h2 className="text-2xl font-bold text-purple-100">Strategic Business Metrics</h2>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="space-y-8">
                 {executivePrioritySections.map((section) => (
                   <MetricSection
                     key={section.id}
@@ -1094,7 +1094,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
 
           {/* Operational Section */}
           {(selectedPriority === 'all' || selectedPriority === 'operational') && (
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="operational-badge px-3 py-1 rounded-lg">
                   <span className="text-amber-400 font-semibold text-sm">Operational Metrics</span>
@@ -1102,7 +1102,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 <h2 className="text-2xl font-bold text-purple-100">Day-to-Day Performance</h2>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="space-y-8">
                 {operationalSections.map((section) => (
                   <MetricSection
                     key={section.id}
@@ -1118,7 +1118,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
 
           {/* Analytical Section */}
           {(selectedPriority === 'all' || selectedPriority === 'analytical') && (
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="analytical-badge px-3 py-1 rounded-lg">
                   <span className="text-purple-400 font-semibold text-sm">Analytical Insights</span>
@@ -1126,7 +1126,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 <h2 className="text-2xl font-bold text-purple-100">Deep Dive Analysis</h2>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="space-y-8">
                 {analyticalSections.map((section) => (
                   <MetricSection
                     key={section.id}
@@ -1141,7 +1141,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
           )}
 
           {/* Enhanced Visualizations */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="flex items-center gap-3">
               <div className="analytical-badge px-3 py-1 rounded-lg">
                 <span className="text-purple-400 font-semibold text-sm">Advanced Analytics</span>
@@ -1149,7 +1149,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               <h2 className="text-2xl font-bold text-purple-100">Strategic Visualizations</h2>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="space-y-8">
               {/* Marketing Funnel Chart */}
               <Card className="glass-effect metric-card-hover">
                 <CardHeader>
@@ -1268,7 +1268,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
           </div>
 
           {/* Additional specialized components for B2C views */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="flex items-center gap-3">
               <div className="analytical-badge px-3 py-1 rounded-lg">
                 <span className="text-purple-400 font-semibold text-sm">Detailed Analysis</span>
@@ -1276,7 +1276,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               <h2 className="text-2xl font-bold text-purple-100">Comprehensive Performance Data</h2>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-8">
               {/* Overall Summary Cards */}
               <OverallSummaryCards />
               
@@ -3639,7 +3639,7 @@ const ExecutiveSummary: React.FC = () => {
       </div>
 
       {/* KPI Cards Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4">
         {summaryMetrics.map((metric, index) => {
           const isPositive = metric.change >= 0;
           const isNegative = metric.change < 0;
