@@ -390,70 +390,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
     <div className="p-4 min-h-screen bg-gradient-to-b from-[#0F0720] via-[#1A0B2E] to-[#0F0720]">
       <div className="max-w-[1600px] mx-auto space-y-6">
         
-        {/* Unified Ecommerce KPIs (B2C) */}
-        {viewMode === 'b2c' && (
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400">
-              Unified Ecommerce KPIs
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <DollarSignIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">MER</p>
-                  <p className="text-2xl font-bold text-purple-200">3.2x</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +12.5%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <TrendingUpIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Profit</p>
-                  <p className="text-2xl font-bold text-purple-200">{formatCurrencyK(125000)}</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +18.3%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <BarChart3Icon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Revenue</p>
-                  <p className="text-2xl font-bold text-purple-200">{formatCurrencyK(400000)}</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +15.7%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <PieChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Profit Margin</p>
-                  <p className="text-2xl font-bold text-purple-200">31.25%</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +2.1%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <LineChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Growth Rate</p>
-                  <p className="text-2xl font-bold text-purple-200">12.5%</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +1.8%
-                  </Badge>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        )}
+        
 
         {/* Performance Behavior Section */}
         <div className="space-y-6">
@@ -487,7 +424,71 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
               </div>
             ))}
           </div>
+          {/* Unified Ecommerce KPIs (B2C) */}
+          {viewMode === 'b2c' && (
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400">
+                Unified Ecommerce KPIs
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
 
+                <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
+                  <CardContent className="p-4 text-center">
+                    <DollarSignIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">MER</p>
+                    <p className="text-2xl font-bold text-purple-200">3.2x</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +12.5%
+                    </Badge>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
+                  <CardContent className="p-4 text-center">
+                    <TrendingUpIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Profit</p>
+                    <p className="text-2xl font-bold text-purple-200">{formatCurrencyK(125000)}</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +18.3%
+                    </Badge>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
+                  <CardContent className="p-4 text-center">
+                    <BarChart3Icon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Revenue</p>
+                    <p className="text-2xl font-bold text-purple-200">{formatCurrencyK(400000)}</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +15.7%
+                    </Badge>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
+                  <CardContent className="p-4 text-center">
+                    <PieChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Profit Margin</p>
+                    <p className="text-2xl font-bold text-purple-200">31.25%</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +2.1%
+                    </Badge>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
+                  <CardContent className="p-4 text-center">
+                    <LineChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Growth Rate</p>
+                    <p className="text-2xl font-bold text-purple-200">12.5%</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +1.8%
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          )}
           {/* Chart Section - Executive with Collapsible */}
           <div className="relative">
             <div className="bg-gradient-to-br from-[#1A0B2E]/90 to-[#2D1B69]/80 backdrop-blur-md rounded-xl border border-purple-500/20">
@@ -690,7 +691,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
                     </div>
                     <div>
                       <h2 className="text-xl font-bold text-white tracking-tight">Segment Performance</h2>
-                      <p className="text-sm text-purple-300/80 mt-1">Detailed performance breakdown</p>
+                      <p className="text-sm text-purple-300/80 mt-1">Detailed performance breakdown, by demographics and devices.</p>
                     </div>
                   </div>
                   <button
@@ -916,72 +917,9 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
 
         {/* Enhanced Campaign Analytics Section */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400">
-            Enhanced Campaign Analytics
-          </h2>
+          
 
-          {/* Unified Ecommerce KPIs */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400">
-              Unified Ecommerce KPIs
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <DollarSignIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">MER</p>
-                  <p className="text-2xl font-bold text-purple-200">{mockData.unifiedKPIs.mer}x</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +{mockData.unifiedKPIs.growthRate}%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <TrendingUpIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Profit</p>
-                  <p className="text-2xl font-bold text-purple-200">${(mockData.unifiedKPIs.profit / 1000).toFixed(1)}K</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +{mockData.unifiedKPIs.growthRate}%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <BarChart3Icon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Revenue</p>
-                  <p className="text-2xl font-bold text-purple-200">${(mockData.unifiedKPIs.revenue / 1000).toFixed(1)}K</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +{mockData.unifiedKPIs.growthRate}%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <PieChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Profit Margin</p>
-                  <p className="text-2xl font-bold text-purple-200">{mockData.unifiedKPIs.profitMargin}%</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +2.1%
-                  </Badge>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-[#2A1A4D]/90 border-[#6D28D9]/30">
-                <CardContent className="p-4 text-center">
-                  <LineChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                  <p className="text-sm text-purple-300/80 mb-1">Growth Rate</p>
-                  <p className="text-2xl font-bold text-purple-200">{mockData.unifiedKPIs.growthRate}%</p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                    +1.8%
-                  </Badge>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          
 
           {/* Marketing Funnel Overview & SKU Performance */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1096,125 +1034,53 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
             </CardContent>
           </Card>
 
-          {/* Creative Asset Analysis & Budget Alerts */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-              <CardHeader>
-                <CardTitle className="text-purple-100">Creative Asset Performance</CardTitle>
-                <CardDescription className="text-purple-300">
-                  Performance analysis of creative assets
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {mockData.creativeAssets.map((asset, index) => (
-                    <div key={index} className="p-4 bg-[#2D1B69]/30 rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-purple-200">{asset.asset}</h4>
-                        <Badge className="bg-purple-500/20 text-purple-300">
-                          ROAS: {asset.roas}x
-                        </Badge>
-                      </div>
-                      <div className="grid grid-cols-3 gap-4 text-xs">
-                        <div>
-                          <p className="text-purple-300/60">CTR</p>
-                          <p className="text-purple-200 font-medium">{asset.ctr}%</p>
-                        </div>
-                        <div>
-                          <p className="text-purple-300/60">Conversions</p>
-                          <p className="text-purple-200 font-medium">{asset.conversions}</p>
-                        </div>
-                        <div>
-                          <p className="text-purple-300/60">Impressions</p>
-                          <p className="text-purple-200 font-medium">{asset.impressions.toLocaleString()}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+          
 
-            <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-              <CardHeader>
-                <CardTitle className="text-purple-100 flex items-center gap-2">
-                  <AlertTriangleIcon className="h-5 w-5 text-amber-400" />
-                  Budget Optimization Alerts
-                </CardTitle>
-                <CardDescription className="text-purple-300">
-                  Campaigns requiring attention
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {mockData.budgetAlerts.map((alert, index) => (
-                    <div key={index} className="p-3 bg-[#2D1B69]/30 rounded-lg border-l-4 border-amber-400">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-purple-200">{alert.campaign}</h4>
-                        <Badge className={`${
-                          alert.impact === 'high' ? 'bg-rose-500/20 text-rose-400' :
-                          alert.impact === 'medium' ? 'bg-amber-500/20 text-amber-400' :
-                          'bg-emerald-500/20 text-emerald-400'
-                        }`}>
-                          {alert.impact.toUpperCase()}
-                        </Badge>
-                      </div>
-                      <p className="text-xs text-purple-300/60 mb-1">{alert.issue}</p>
-                      <div className="flex items-center gap-2 text-xs">
-                        <span className="text-purple-300">Current: {alert.current}</span>
-                        <span className="text-purple-300/60">Target: {alert.target}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+         {/* Communication Analytics */}
+          {/* <Card className="bg-[#1A0B2E] border-[#6D28D9]/20"> */}
+            {/* <CardHeader> */}
+              {/* <CardTitle className="text-purple-100">Email/SMS/WhatsApp Analytics</CardTitle> */}
+              {/* <CardDescription className="text-purple-300"> */}
+                {/* Performance across communication channels */}
+              {/* </CardDescription> */}
+            {/* </CardHeader> */}
+            {/* <CardContent> */}
+              {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6"> */}
+                {/* {Object.entries(mockData.communicationAnalytics).map(([channel, data]) => ( */}
+                  {/* <div key={channel} className="p-4 bg-[#2D1B69]/30 rounded-lg"> */}
+                    {/* <div className="flex items-center justify-between mb-4"> */}
+                      {/* <h4 className="text-lg font-medium text-purple-200 capitalize">{channel}</h4> */}
+                      {/* <Badge className="bg-purple-500/20 text-purple-300"> */}
+                        {/* ROAS: {data.roas}x */}
+                      {/* </Badge> */}
+                    {/* </div> */}
+                    {/* <div className="space-y-2 text-sm"> */}
+                      {/* <div className="flex justify-between"> */}
+                        {/* <span className="text-purple-300/60">Sent</span> */}
+                        {/* <span className="text-purple-200">{data.sent.toLocaleString()}</span> */}
+                      {/* </div> */}
+                      {/* <div className="flex justify-between"> */}
+                        {/* <span className="text-purple-300/60">Delivered</span> */}
+                        {/* <span className="text-purple-200"> */}
+                          {/* {'delivered' in data ? data.delivered.toLocaleString() :  */}
+                           {/* 'opened' in data ? data.opened.toLocaleString() : 'N/A'} */}
+                        {/* </span> */}
+                      {/* </div> */}
+                      {/* <div className="flex justify-between"> */}
+                        {/* <span className="text-purple-300/60">Clicked</span> */}
+                        {/* <span className="text-purple-200">{data.clicked.toLocaleString()}</span> */}
+                      {/* </div> */}
+                      {/* <div className="flex justify-between"> */}
+                        {/* <span className="text-purple-300/60">Converted</span> */}
+                        {/* <span className="text-purple-200">{data.converted.toLocaleString()}</span> */}
+                      {/* </div> */}
+                    {/* </div> */}
+                  {/* </div> */}
+                {/* ))} */}
+              {/* </div> */}
+            {/* </CardContent> */}
+          {/* </Card> */}
 
-          {/* Communication Analytics */}
-          <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-            <CardHeader>
-              <CardTitle className="text-purple-100">Email/SMS/WhatsApp Analytics</CardTitle>
-              <CardDescription className="text-purple-300">
-                Performance across communication channels
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {Object.entries(mockData.communicationAnalytics).map(([channel, data]) => (
-                  <div key={channel} className="p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="text-lg font-medium text-purple-200 capitalize">{channel}</h4>
-                      <Badge className="bg-purple-500/20 text-purple-300">
-                        ROAS: {data.roas}x
-                      </Badge>
-                    </div>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/60">Sent</span>
-                        <span className="text-purple-200">{data.sent.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/60">Delivered</span>
-                        <span className="text-purple-200">
-                          {'delivered' in data ? data.delivered.toLocaleString() : 
-                           'opened' in data ? data.opened.toLocaleString() : 'N/A'}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/60">Clicked</span>
-                        <span className="text-purple-200">{data.clicked.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/60">Converted</span>
-                        <span className="text-purple-200">{data.converted.toLocaleString()}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
 
           {/* Risk & Alert Metrics & Forecasting */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1304,51 +1170,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
             </Card>
           </div>
 
-          {/* Marketing Funnel Overview & Pathing (B2C) */}
-          {viewMode === 'b2c' && (
-            <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-              <CardHeader>
-                <CardTitle className="text-purple-100">Marketing Funnel Overview</CardTitle>
-                <CardDescription className="text-purple-300">
-                  Customer journey from awareness to purchase
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px] w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={[
-                      { stage: 'Awareness', value: 100000, percentage: 100 },
-                      { stage: 'Interest', value: 45000, percentage: 45 },
-                      { stage: 'Consideration', value: 22500, percentage: 22.5 },
-                      { stage: 'Intent', value: 11250, percentage: 11.25 },
-                      { stage: 'Purchase', value: 6750, percentage: 6.75 }
-                    ]}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.1} />
-                      <XAxis 
-                        dataKey="stage" 
-                        tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                        axisLine={{ stroke: '#6D28D9' }}
-                      />
-                      <YAxis 
-                        tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                        axisLine={{ stroke: '#6D28D9' }}
-                      />
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                          border: '1px solid rgba(109, 40, 217, 0.2)',
-                          borderRadius: '12px',
-                          color: '#E9D5FF',
-                          backdropFilter: 'blur(8px)'
-                        }}
-                      />
-                      <Bar dataKey="value" fill="#7C3AED" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+          
 
           {/* Platform-Specific ROAS & Efficiency (Both B2B/B2C) */}
           <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
@@ -1402,94 +1224,11 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
             </CardContent>
           </Card>
 
-          {/* Multi-Touch Attribution Models (Both B2B/B2C) */}
-          <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-            <CardHeader>
-              <CardTitle className="text-purple-100">Multi-Touch Attribution Models</CardTitle>
-              <CardDescription className="text-purple-300">
-                Revenue attribution across different attribution models
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[300px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={[
-                    { model: 'First Touch', revenue: 180000, percentage: 45 },
-                    { model: 'Last Touch', revenue: 220000, percentage: 55 },
-                    { model: 'Linear', revenue: 200000, percentage: 50 },
-                    { model: 'Time Decay', revenue: 210000, percentage: 52.5 },
-                    { model: 'Position Based', revenue: 195000, percentage: 48.75 }
-                  ]}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.1} />
-                    <XAxis 
-                      dataKey="model" 
-                      tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                      axisLine={{ stroke: '#6D28D9' }}
-                    />
-                    <YAxis 
-                      tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                      axisLine={{ stroke: '#6D28D9' }}
-                    />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                        border: '1px solid rgba(109, 40, 217, 0.2)',
-                        borderRadius: '12px',
-                        color: '#E9D5FF',
-                        backdropFilter: 'blur(8px)'
-                      }}
-                      formatter={(value) => [formatCurrencyK(Number(value)), 'Revenue']}
-                    />
-                    <Bar dataKey="revenue" fill="#7C3AED" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
+          
 
           {/* Creative Asset Analysis (Both B2B/B2C) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-              <CardHeader>
-                <CardTitle className="text-purple-100">Creative Asset Performance</CardTitle>
-                <CardDescription className="text-purple-300">
-                  Performance analysis of creative assets
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { asset: 'Video Ad A', impressions: 50000, clicks: 2500, ctr: 5.0, conversions: 125, roas: 2.8 },
-                    { asset: 'Image Ad B', impressions: 45000, clicks: 1800, ctr: 4.0, conversions: 90, roas: 2.2 },
-                    { asset: 'Carousel Ad C', impressions: 35000, clicks: 2100, ctr: 6.0, conversions: 105, roas: 3.1 },
-                    { asset: 'Story Ad D', impressions: 30000, clicks: 1500, ctr: 5.0, conversions: 75, roas: 2.5 }
-                  ].map((asset, index) => (
-                    <div key={index} className="p-4 bg-[#2D1B69]/30 rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-purple-200">{asset.asset}</h4>
-                        <Badge className="bg-purple-500/20 text-purple-300">
-                          ROAS: {asset.roas}x
-                        </Badge>
-                      </div>
-                      <div className="grid grid-cols-3 gap-4 text-xs">
-                        <div>
-                          <p className="text-purple-300/60">CTR</p>
-                          <p className="text-purple-200 font-medium">{asset.ctr}%</p>
-                        </div>
-                        <div>
-                          <p className="text-purple-300/60">Conversions</p>
-                          <p className="text-purple-200 font-medium">{asset.conversions}</p>
-                        </div>
-                        <div>
-                          <p className="text-purple-300/60">Impressions</p>
-                          <p className="text-purple-200 font-medium">{asset.impressions.toLocaleString()}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            
 
             {/* Budget Optimization / Alerting (Both B2B/B2C) */}
             <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
@@ -1532,51 +1271,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
             </Card>
           </div>
 
-          {/* Email/SMS/WhatsApp Analytics (Both B2B/B2C) */}
-          <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-            <CardHeader>
-              <CardTitle className="text-purple-100">Communication Channel Analytics</CardTitle>
-              <CardDescription className="text-purple-300">
-                Email, SMS, and WhatsApp performance metrics
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  { channel: 'Email', sent: 50000, opened: 15000, clicked: 3000, converted: 450, roas: 3.2 },
-                  { channel: 'SMS', sent: 25000, delivered: 24000, clicked: 1200, converted: 180, roas: 2.8 },
-                  { channel: 'WhatsApp', sent: 15000, delivered: 14800, clicked: 900, converted: 135, roas: 3.5 }
-                ].map((channel, index) => (
-                  <div key={index} className="p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="text-lg font-semibold text-purple-200">{channel.channel}</h4>
-                      <Badge className="bg-purple-500/20 text-purple-300">
-                        ROAS: {channel.roas}x
-                      </Badge>
-                    </div>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/80">Sent</span>
-                        <span className="text-purple-200">{channel.sent.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/80">Opened</span>
-                        <span className="text-purple-200">{channel.opened?.toLocaleString() || channel.delivered?.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/80">Clicked</span>
-                        <span className="text-purple-200">{channel.clicked.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-purple-300/80">Converted</span>
-                        <span className="text-purple-200">{channel.converted}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          
 
           {/* Risk & Alert Metrics (Both B2B/B2C) */}
           <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
