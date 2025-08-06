@@ -1446,6 +1446,8 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
   );
 };
 
+export default ExecutiveMetrics;
+
 // Additional specialized components for B2C views
 
 // Overall Summary Cards Component
