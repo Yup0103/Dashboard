@@ -2394,137 +2394,320 @@ const EnhancedForecastingView: React.FC = () => {
 
 // Enhanced Audience Insights Component
 const EnhancedAudienceInsights: React.FC = () => {
-  const demographicsData = [
+  const [selectedGender, setSelectedGender] = useState<string>('all');
+  const [selectedAge, setSelectedAge] = useState<string>('all');
+  const [selectedDevice, setSelectedDevice] = useState<string>('all');
+
+  const allDemographicsData = [
     { segment: 'Female', conversion: 2.8, roi: 3.2, cac: 45, percentage: 58 },
     { segment: 'Male', conversion: 2.1, roi: 2.8, cac: 52, percentage: 42 }
   ];
 
-  const ageGroupData = [
+  const allAgeGroupData = [
     { age: '18-24', conversion: 2.5, roi: 2.8, cac: 48, percentage: 25 },
     { age: '25-34', conversion: 3.2, roi: 4.2, cac: 42, percentage: 35 },
     { age: '35-44', conversion: 2.8, roi: 3.5, cac: 45, percentage: 22 },
     { age: '45+', conversion: 2.1, roi: 2.9, cac: 55, percentage: 18 }
   ];
 
-  const deviceData = [
+  const allDeviceData = [
     { device: 'Mobile', conversion: 2.8, roi: 3.1, cac: 45, percentage: 68 },
     { device: 'Desktop', conversion: 2.1, roi: 2.8, cac: 67, percentage: 28 },
     { device: 'Tablet', conversion: 1.9, roi: 2.5, cac: 72, percentage: 4 }
   ];
 
+  // Filter data based on selections
+  const demographicsData = selectedGender === 'all' 
+    ? allDemographicsData 
+    : allDemographicsData.filter(item => item.segment.toLowerCase() === selectedGender.toLowerCase());
+
+  const ageGroupData = selectedAge === 'all' 
+    ? allAgeGroupData 
+    : allAgeGroupData.filter(item => item.age === selectedAge);
+
+  const deviceData = selectedDevice === 'all' 
+    ? allDeviceData 
+    : allDeviceData.filter(item => item.device.toLowerCase() === selectedDevice.toLowerCase());
+
   return (
     <Card className="glass-effect metric-card-hover">
       <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <UsersIcon className="w-6 h-6 text-purple-400" />
-          Audience Insights
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Conversion, ROI, and CAC by gender, age group, device, and interest segments
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-purple-100 flex items-center gap-2">
+              <UsersIcon className="w-6 h-6 text-purple-400" />
+              Audience Insights
+            </CardTitle>
+            <CardDescription className="text-purple-300">
+              Conversion, ROI, and CAC by gender, age group, device, and interest segments
+            </CardDescription>
+          </div>
+          <div className="flex items-center gap-3">
+            {/* Gender Filter */}
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-purple-300">Gender</span>
+              <Select value={selectedGender} onValueChange={setSelectedGender}>
+                <SelectTrigger className="w-[120px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
+                  <SelectValue placeholder="Gender" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#2D1B69] border-purple-500/20">
+                  <SelectItem value="all" className="text-purple-200 focus:bg-purple-500/20">All</SelectItem>
+                  <SelectItem value="female" className="text-purple-200 focus:bg-purple-500/20">Female</SelectItem>
+                  <SelectItem value="male" className="text-purple-200 focus:bg-purple-500/20">Male</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Age Filter */}
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-purple-300">Age</span>
+              <Select value={selectedAge} onValueChange={setSelectedAge}>
+                <SelectTrigger className="w-[120px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
+                  <SelectValue placeholder="Age" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#2D1B69] border-purple-500/20">
+                  <SelectItem value="all" className="text-purple-200 focus:bg-purple-500/20">All Ages</SelectItem>
+                  <SelectItem value="18-24" className="text-purple-200 focus:bg-purple-500/20">18-24</SelectItem>
+                  <SelectItem value="25-34" className="text-purple-200 focus:bg-purple-500/20">25-34</SelectItem>
+                  <SelectItem value="35-44" className="text-purple-200 focus:bg-purple-500/20">35-44</SelectItem>
+                  <SelectItem value="45+" className="text-purple-200 focus:bg-purple-500/20">45+</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Device Filter */}
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-purple-300">Device</span>
+              <Select value={selectedDevice} onValueChange={setSelectedDevice}>
+                <SelectTrigger className="w-[120px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
+                  <SelectValue placeholder="Device" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#2D1B69] border-purple-500/20">
+                  <SelectItem value="all" className="text-purple-200 focus:bg-purple-500/20">All Devices</SelectItem>
+                  <SelectItem value="mobile" className="text-purple-200 focus:bg-purple-500/20">Mobile</SelectItem>
+                  <SelectItem value="desktop" className="text-purple-200 focus:bg-purple-500/20">Desktop</SelectItem>
+                  <SelectItem value="tablet" className="text-purple-200 focus:bg-purple-500/20">Tablet</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {/* Demographics Pie Chart */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={demographicsData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={100}
-                    paddingAngle={5}
-                    dataKey="percentage"
-                  >
-                    {demographicsData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={['#8B5CF6', '#10B981'][index]} />
-                    ))}
-                  </Pie>
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                      border: '1px solid rgba(109, 40, 217, 0.2)',
-                      borderRadius: '12px',
-                      color: '#E9D5FF'
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+          {/* Dynamic Charts Based on Filters */}
+          <div className="space-y-6">
+            {/* Gender Chart - Show only if gender filter is 'all' or has data */}
+            {(selectedGender === 'all' || demographicsData.length > 0) && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Demographics Pie Chart */}
+                <div>
+                  <h3 className="text-purple-100 font-semibold mb-4 flex items-center gap-2">
+                    <UserIcon className="w-5 h-5 text-purple-400" />
+                    Gender Distribution
+                    {selectedGender !== 'all' && (
+                      <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 ml-2">
+                        Filtered: {selectedGender}
+                      </Badge>
+                    )}
+                  </h3>
+                  {demographicsData.length > 0 ? (
+                    <div className="h-[300px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={demographicsData}
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={60}
+                            outerRadius={100}
+                            paddingAngle={5}
+                            dataKey="percentage"
+                          >
+                            {demographicsData.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={['#8B5CF6', '#10B981'][index % 2]} />
+                            ))}
+                          </Pie>
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'rgba(45, 27, 105, 0.95)',
+                              border: '1px solid rgba(109, 40, 217, 0.2)',
+                              borderRadius: '12px',
+                              color: '#E9D5FF'
+                            }}
+                          />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
+                  ) : (
+                    <div className="h-[300px] flex items-center justify-center bg-[#2D1B69]/20 rounded-lg">
+                      <p className="text-purple-300">No gender data available for selected filters</p>
+                    </div>
+                  )}
+                </div>
 
-            {/* Age Group Bar Chart */}
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={ageGroupData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                  <XAxis dataKey="age" stroke="#E9D5FF" />
-                  <YAxis stroke="#E9D5FF" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                      border: '1px solid rgba(109, 40, 217, 0.2)',
-                      borderRadius: '12px',
-                      color: '#E9D5FF'
-                    }}
-                  />
-                  <Legend />
-                  <Bar dataKey="roi" fill="#8B5CF6" name="ROI (x)" />
-                  <Bar dataKey="conversion" fill="#10B981" name="Conversion (%)" />
-                </BarChart>
-              </ResponsiveContainer>
+                {/* Age Group Bar Chart */}
+                <div>
+                  <h3 className="text-purple-100 font-semibold mb-4 flex items-center gap-2">
+                    <UsersIcon className="w-5 h-5 text-purple-400" />
+                    Age Group Performance
+                    {selectedAge !== 'all' && (
+                      <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 ml-2">
+                        Filtered: {selectedAge}
+                      </Badge>
+                    )}
+                  </h3>
+                  {ageGroupData.length > 0 ? (
+                    <div className="h-[300px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart data={ageGroupData}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
+                          <XAxis dataKey="age" stroke="#E9D5FF" />
+                          <YAxis stroke="#E9D5FF" />
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'rgba(45, 27, 105, 0.95)',
+                              border: '1px solid rgba(109, 40, 217, 0.2)',
+                              borderRadius: '12px',
+                              color: '#E9D5FF'
+                            }}
+                          />
+                          <Legend />
+                          <Bar dataKey="roi" fill="#8B5CF6" name="ROI (x)" />
+                          <Bar dataKey="conversion" fill="#10B981" name="Conversion (%)" />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                  ) : (
+                    <div className="h-[300px] flex items-center justify-center bg-[#2D1B69]/20 rounded-lg">
+                      <p className="text-purple-300">No age data available for selected filters</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Device Usage Chart */}
+            <div>
+              <h3 className="text-purple-100 font-semibold mb-4 flex items-center gap-2">
+                <SmartphoneIcon className="w-5 h-5 text-purple-400" />
+                Device Performance
+                {selectedDevice !== 'all' && (
+                  <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 ml-2">
+                    Filtered: {selectedDevice}
+                  </Badge>
+                )}
+              </h3>
+              {deviceData.length > 0 ? (
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={deviceData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
+                      <XAxis dataKey="device" stroke="#E9D5FF" />
+                      <YAxis stroke="#E9D5FF" />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: 'rgba(45, 27, 105, 0.95)',
+                          border: '1px solid rgba(109, 40, 217, 0.2)',
+                          borderRadius: '12px',
+                          color: '#E9D5FF'
+                        }}
+                      />
+                      <Legend />
+                      <Bar dataKey="percentage" fill="#F59E0B" name="Usage (%)" />
+                      <Bar dataKey="cac" fill="#EF4444" name="CAC (₹)" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                <div className="h-[300px] flex items-center justify-center bg-[#2D1B69]/20 rounded-lg">
+                  <p className="text-purple-300">No device data available for selected filters</p>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Device Usage Stacked Bar */}
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={deviceData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis dataKey="device" stroke="#E9D5FF" />
-                <YAxis stroke="#E9D5FF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Legend />
-                <Bar dataKey="percentage" fill="#F59E0B" name="Usage (%)" />
-                <Bar dataKey="cac" fill="#EF4444" name="CAC (₹)" />
-              </BarChart>
-            </ResponsiveContainer>
+          {/* Filtered Audience Details Table */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-purple-100 font-semibold">Audience Performance Details</h3>
+              <div className="flex items-center gap-2">
+                {selectedGender !== 'all' && (
+                  <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
+                    Gender: {selectedGender}
+                  </Badge>
+                )}
+                {selectedAge !== 'all' && (
+                  <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30">
+                    Age: {selectedAge}
+                  </Badge>
+                )}
+                {selectedDevice !== 'all' && (
+                  <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30">
+                    Device: {selectedDevice}
+                  </Badge>
+                )}
+              </div>
+            </div>
+            
+            {[...demographicsData, ...ageGroupData, ...deviceData].length > 0 ? (
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-[#6D28D9]/20">
+                    <TableHead className="text-purple-200">Segment</TableHead>
+                    <TableHead className="text-purple-200">Type</TableHead>
+                    <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
+                    <TableHead className="text-purple-200">ROI (x)</TableHead>
+                    <TableHead className="text-purple-200">CAC (₹)</TableHead>
+                    <TableHead className="text-purple-200">Percentage (%)</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {demographicsData.map((row, index) => (
+                    <TableRow key={`demo-${index}`} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
+                      <TableCell className="text-purple-200 font-medium">{row.segment}</TableCell>
+                      <TableCell className="text-purple-200">
+                        <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">Gender</Badge>
+                      </TableCell>
+                      <TableCell className="text-purple-200">{row.conversion}%</TableCell>
+                      <TableCell className="text-purple-200">{row.roi}x</TableCell>
+                      <TableCell className="text-purple-200">₹{row.cac}</TableCell>
+                      <TableCell className="text-purple-200">{row.percentage}%</TableCell>
+                    </TableRow>
+                  ))}
+                  {ageGroupData.map((row, index) => (
+                    <TableRow key={`age-${index}`} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
+                      <TableCell className="text-purple-200 font-medium">{row.age}</TableCell>
+                      <TableCell className="text-purple-200">
+                        <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30">Age</Badge>
+                      </TableCell>
+                      <TableCell className="text-purple-200">{row.conversion}%</TableCell>
+                      <TableCell className="text-purple-200">{row.roi}x</TableCell>
+                      <TableCell className="text-purple-200">₹{row.cac}</TableCell>
+                      <TableCell className="text-purple-200">{row.percentage}%</TableCell>
+                    </TableRow>
+                  ))}
+                  {deviceData.map((row, index) => (
+                    <TableRow key={`device-${index}`} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
+                      <TableCell className="text-purple-200 font-medium">{row.device}</TableCell>
+                      <TableCell className="text-purple-200">
+                        <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30">Device</Badge>
+                      </TableCell>
+                      <TableCell className="text-purple-200">{row.conversion}%</TableCell>
+                      <TableCell className="text-purple-200">{row.roi}x</TableCell>
+                      <TableCell className="text-purple-200">₹{row.cac}</TableCell>
+                      <TableCell className="text-purple-200">{row.percentage}%</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <div className="p-8 text-center bg-[#2D1B69]/20 rounded-lg">
+                <p className="text-purple-300 mb-2">No audience data matches your current filters</p>
+                <p className="text-purple-400 text-sm">Try adjusting your filter selections to see more data</p>
+              </div>
+            )}
           </div>
-
-          {/* Audience Details Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Segment</TableHead>
-                <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
-                <TableHead className="text-purple-200">ROI (x)</TableHead>
-                <TableHead className="text-purple-200">CAC (₹)</TableHead>
-                <TableHead className="text-purple-200">Percentage (%)</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {[...demographicsData, ...ageGroupData, ...deviceData].map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    {'segment' in row ? row.segment : 'age' in row ? row.age : row.device}
-                  </TableCell>
-                  <TableCell className="text-purple-200">{row.conversion}%</TableCell>
-                  <TableCell className="text-purple-200">{row.roi}x</TableCell>
-                  <TableCell className="text-purple-200">₹{row.cac}</TableCell>
-                  <TableCell className="text-purple-200">{row.percentage}%</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
         </div>
       </CardContent>
     </Card>
