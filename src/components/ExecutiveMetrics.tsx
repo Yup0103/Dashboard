@@ -2447,12 +2447,12 @@ const EnhancedPlatformTable: React.FC = () => {
 // Enhanced Channel Performance Table
 const EnhancedChannelTable: React.FC = () => {
   const channelData = [
-    { channel: 'Paid Search', traffic: '45.2K', sessions: '89.4K', newVisitors: '67%', repeatVisitors: '33%', conversion: '2.8%', color: '#4285F4' },
-    { channel: 'Organic Search', traffic: '28.7K', sessions: '56.2K', newVisitors: '72%', repeatVisitors: '28%', conversion: '1.9%', color: '#34A853' },
-    { channel: 'Social Media', traffic: '15.3K', sessions: '32.1K', newVisitors: '58%', repeatVisitors: '42%', conversion: '3.2%', color: '#E4405F' },
-    { channel: 'Direct', traffic: '12.8K', sessions: '25.6K', newVisitors: '45%', repeatVisitors: '55%', conversion: '4.1%', color: '#8B5CF6' },
-    { channel: 'Referral', traffic: '8.9K', sessions: '18.7K', newVisitors: '63%', repeatVisitors: '37%', conversion: '2.5%', color: '#F59E0B' },
-    { channel: 'Email', traffic: '6.4K', sessions: '12.8K', newVisitors: '38%', repeatVisitors: '62%', conversion: '5.8%', color: '#10B981' }
+    { channel: 'Paid Search', traffic: '45.2K', trafficValue: 45.2, sessions: '89.4K', newVisitors: '67%', repeatVisitors: '33%', conversion: '2.8%', color: '#4285F4' },
+    { channel: 'Organic Search', traffic: '28.7K', trafficValue: 28.7, sessions: '56.2K', newVisitors: '72%', repeatVisitors: '28%', conversion: '1.9%', color: '#34A853' },
+    { channel: 'Social Media', traffic: '15.3K', trafficValue: 15.3, sessions: '32.1K', newVisitors: '58%', repeatVisitors: '42%', conversion: '3.2%', color: '#E4405F' },
+    { channel: 'Direct', traffic: '12.8K', trafficValue: 12.8, sessions: '25.6K', newVisitors: '45%', repeatVisitors: '55%', conversion: '4.1%', color: '#8B5CF6' },
+    { channel: 'Referral', traffic: '8.9K', trafficValue: 8.9, sessions: '18.7K', newVisitors: '63%', repeatVisitors: '37%', conversion: '2.5%', color: '#F59E0B' },
+    { channel: 'Email', traffic: '6.4K', trafficValue: 6.4, sessions: '12.8K', newVisitors: '38%', repeatVisitors: '62%', conversion: '5.8%', color: '#10B981' }
   ];
 
   return (
@@ -2473,8 +2473,19 @@ const EnhancedChannelTable: React.FC = () => {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={channelData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis dataKey="channel" stroke="#E9D5FF" />
-                <YAxis stroke="#E9D5FF" />
+                <XAxis 
+                  dataKey="channel" 
+                  stroke="#E9D5FF" 
+                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
+                  angle={-45}
+                  textAnchor="end"
+                  height={80}
+                />
+                <YAxis 
+                  stroke="#E9D5FF" 
+                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
+                  label={{ value: 'Traffic (K)', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle', fill: '#E9D5FF' } }}
+                />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(45, 27, 105, 0.95)',
@@ -2482,8 +2493,16 @@ const EnhancedChannelTable: React.FC = () => {
                     borderRadius: '12px',
                     color: '#E9D5FF'
                   }}
+                  formatter={(value: any, name: any) => [
+                    `${value}K`,
+                    'Traffic'
+                  ]}
                 />
-                <Bar dataKey="traffic" fill="#8B5CF6" />
+                <Bar 
+                  dataKey="trafficValue" 
+                  fill="#8B5CF6" 
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
