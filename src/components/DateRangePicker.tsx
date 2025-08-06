@@ -34,7 +34,7 @@ export function DateRangePicker({
     <div className="flex gap-2">
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="bg-amber-100">
+          <Button variant="outline" className="bg-[#2D1B69]/30 border-purple-500/20 text-purple-200 hover:bg-purple-500/10">
             <CalendarIcon className="mr-2 h-4 w-4" />
             {format(currentDate.from, "MM/dd/yyyy")}
           </Button>
@@ -50,7 +50,7 @@ export function DateRangePicker({
 
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="bg-amber-100">
+          <Button variant="outline" className="bg-[#2D1B69]/30 border-purple-500/20 text-purple-200 hover:bg-purple-500/10">
             <CalendarIcon className="mr-2 h-4 w-4" />
             {format(currentDate.to, "MM/dd/yyyy")}
           </Button>
