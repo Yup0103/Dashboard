@@ -769,7 +769,7 @@ const MetricCard: React.FC<{ metric: Metric }> = ({ metric }) => {
       {/* Subtle glow effect */}
       <div className={`absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
         isPositive ? 'bg-emerald-500' : isNegative ? 'bg-red-500' : 'bg-purple-500'
-      } blur-sm`} />
+      } blur-sm -z-10`} />
     </div>
   );
 };
@@ -2661,7 +2661,7 @@ const ExecutiveSummary: React.FC = () => {
               {/* Subtle glow effect */}
               <div className={`absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
                 isPositive ? 'bg-emerald-500' : isNegative ? 'bg-red-500' : 'bg-purple-500'
-      } blur-sm`} />
+              } blur-sm -z-10`} />
             </div>
           );
         })}
