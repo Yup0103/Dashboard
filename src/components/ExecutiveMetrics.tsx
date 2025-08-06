@@ -3557,7 +3557,7 @@ const ExecutiveSummary: React.FC = () => {
   const summaryMetrics = [
     {
       label: "Total Revenue",
-      value: "₹8.7M",
+      value: "₹8M",
       change: 18.3,
       trend: 'up' as const,
       icon: DollarSignIcon,
