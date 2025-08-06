@@ -2476,12 +2476,78 @@ const EnhancedCreativePerformance: React.FC = () => {
   ];
 
   return (
-    
-     
-        
-    
-        
+    <Card className="glass-effect metric-card-hover">
+      <CardHeader>
+        <CardTitle className="text-purple-100 flex items-center gap-2">
+          <ImageIcon className="w-6 h-6 text-purple-400" />
+          Creative Performance Analysis
+        </CardTitle>
+        <CardDescription className="text-purple-300">
+          Performance breakdown by creative format and type
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-6">
+          {/* Creative Performance Chart */}
+          <div className="h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={creativeData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
+                <XAxis 
+                  dataKey="type" 
+                  stroke="#E9D5FF" 
+                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
+                />
+                <YAxis stroke="#E9D5FF" />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
+                    border: '1px solid rgba(109, 40, 217, 0.2)',
+                    borderRadius: '12px',
+                    color: '#E9D5FF'
+                  }}
+                />
+                <Legend />
+                <Bar dataKey="ctr" fill="#8B5CF6" name="CTR (%)" />
+                <Bar dataKey="roi" fill="#10B981" name="ROI (x)" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
 
+          {/* Creative Details Table */}
+          <Table>
+            <TableHeader>
+              <TableRow className="border-[#6D28D9]/20">
+                <TableHead className="text-purple-200">Creative Type</TableHead>
+                <TableHead className="text-purple-200">CTR (%)</TableHead>
+                <TableHead className="text-purple-200">Conversions</TableHead>
+                <TableHead className="text-purple-200">Spend (₹)</TableHead>
+                <TableHead className="text-purple-200">ROI (x)</TableHead>
+                <TableHead className="text-purple-200">Performance</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {creativeData.map((row, index) => (
+                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
+                  <TableCell className="text-purple-200 font-medium">{row.type}</TableCell>
+                  <TableCell className="text-purple-200">{row.ctr}%</TableCell>
+                  <TableCell className="text-purple-200">{row.conversions.toLocaleString()}</TableCell>
+                  <TableCell className="text-purple-200">₹{row.spend}K</TableCell>
+                  <TableCell className="text-purple-200">{row.roi}x</TableCell>
+                  <TableCell>
+                    <Badge className={row.roi >= 3 ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/20 text-amber-400 border-amber-500/30'}>
+                      {row.roi >= 3 ? 'excellent' : 'good'}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 // Executive Summary Component
 const ExecutiveSummary: React.FC = () => {
