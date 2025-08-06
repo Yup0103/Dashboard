@@ -1391,330 +1391,8 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               {/* Enhanced Forecasting View */}
               <EnhancedForecastingView />
 
-              {/* Enhanced Audience Insights */}
-              {/* Restructured Audience Insights */}
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-semibold text-purple-100 flex items-center gap-2">
-                      <UsersIcon className="w-7 h-7 text-purple-400" />
-                      Audience Insights
-                    </h2>
-                    <p className="text-purple-300 text-sm mt-1">Conversion, ROI, and CAC by gender, age group, device, and interest segments</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Select>
-                      <SelectTrigger className="w-[120px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
-                        <SelectValue placeholder="Gender" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[#2D1B69] border-purple-500/20">
-                        <SelectItem value="all" className="text-purple-200">All</SelectItem>
-                        <SelectItem value="female" className="text-purple-200">Female</SelectItem>
-                        <SelectItem value="male" className="text-purple-200">Male</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <Select>
-                      <SelectTrigger className="w-[120px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
-                        <SelectValue placeholder="Age" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[#2D1B69] border-purple-500/20">
-                        <SelectItem value="all" className="text-purple-200">All Ages</SelectItem>
-                        <SelectItem value="18-24" className="text-purple-200">18-24</SelectItem>
-                        <SelectItem value="25-34" className="text-purple-200">25-34</SelectItem>
-                        <SelectItem value="35-44" className="text-purple-200">35-44</SelectItem>
-                        <SelectItem value="45+" className="text-purple-200">45+</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <Select>
-                      <SelectTrigger className="w-[140px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
-                        <SelectValue placeholder="Device" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-[#2D1B69] border-purple-500/20">
-                        <SelectItem value="all" className="text-purple-200">All Devices</SelectItem>
-                        <SelectItem value="mobile" className="text-purple-200">Mobile</SelectItem>
-                        <SelectItem value="desktop" className="text-purple-200">Desktop</SelectItem>
-                        <SelectItem value="tablet" className="text-purple-200">Tablet</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                {/* Gender Distribution */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <Card className="glass-effect metric-card-hover">
-                    <CardHeader>
-                      <CardTitle className="text-purple-100 flex items-center gap-2">
-                        <UserIcon className="w-6 h-6 text-purple-400" />
-                        Gender Distribution
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-[300px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <PieChart>
-                            <Pie
-                              data={[
-                                { name: 'Female', value: 58, color: '#8B5CF6' },
-                                { name: 'Male', value: 42, color: '#10B981' }
-                              ]}
-                              cx="50%"
-                              cy="50%"
-                              innerRadius={60}
-                              outerRadius={120}
-                              fill="#8884d8"
-                              dataKey="value"
-                            >
-                              <Cell fill="#8B5CF6" />
-                              <Cell fill="#10B981" />
-                            </Pie>
-                            <Tooltip 
-                              contentStyle={{ 
-                                backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                                border: '1px solid rgba(109, 40, 217, 0.2)',
-                                borderRadius: '12px',
-                                color: '#E9D5FF'
-                              }}
-                            />
-                          </PieChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="glass-effect metric-card-hover">
-                    <CardHeader>
-                      <CardTitle className="text-purple-100">Audience Performance Details</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="border-[#6D28D9]/20">
-                            <TableHead className="text-purple-200">Segment</TableHead>
-                            <TableHead className="text-purple-200">Type</TableHead>
-                            <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
-                            <TableHead className="text-purple-200">ROI (x)</TableHead>
-                            <TableHead className="text-purple-200">CAC (₹)</TableHead>
-                            <TableHead className="text-purple-200">Percentage (%)</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">Female</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">Gender</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">2.8%</TableCell>
-                            <TableCell className="text-purple-200">3.2x</TableCell>
-                            <TableCell className="text-purple-200">₹45</TableCell>
-                            <TableCell className="text-purple-200">58%</TableCell>
-                          </TableRow>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">Male</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">Gender</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">2.1%</TableCell>
-                            <TableCell className="text-purple-200">2.8x</TableCell>
-                            <TableCell className="text-purple-200">₹52</TableCell>
-                            <TableCell className="text-purple-200">42%</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* Age Group Performance */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <Card className="glass-effect metric-card-hover">
-                    <CardHeader>
-                      <CardTitle className="text-purple-100 flex items-center gap-2">
-                        <UsersIcon className="w-6 h-6 text-purple-400" />
-                        Age Group Performance
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-[300px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={[
-                            { age: '18-24', roi: 2.8, conversion: 2.5 },
-                            { age: '25-34', roi: 4.2, conversion: 3.2 },
-                            { age: '35-44', roi: 3.5, conversion: 2.8 },
-                            { age: '45+', roi: 2.9, conversion: 2.1 }
-                          ]}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                            <XAxis dataKey="age" stroke="#E9D5FF" />
-                            <YAxis stroke="#E9D5FF" />
-                            <Tooltip 
-                              contentStyle={{ 
-                                backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                                border: '1px solid rgba(109, 40, 217, 0.2)',
-                                borderRadius: '12px',
-                                color: '#E9D5FF'
-                              }}
-                            />
-                            <Legend />
-                            <Bar dataKey="roi" fill="#8B5CF6" name="ROI (x)" />
-                            <Bar dataKey="conversion" fill="#10B981" name="Conversion (%)" />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="glass-effect metric-card-hover">
-                    <CardHeader>
-                      <CardTitle className="text-purple-100">Age Performance Details</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="border-[#6D28D9]/20">
-                            <TableHead className="text-purple-200">Segment</TableHead>
-                            <TableHead className="text-purple-200">Type</TableHead>
-                            <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
-                            <TableHead className="text-purple-200">ROI (x)</TableHead>
-                            <TableHead className="text-purple-200">CAC (₹)</TableHead>
-                            <TableHead className="text-purple-200">Percentage (%)</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">18-24</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30">Age</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">2.5%</TableCell>
-                            <TableCell className="text-purple-200">2.8x</TableCell>
-                            <TableCell className="text-purple-200">₹48</TableCell>
-                            <TableCell className="text-purple-200">25%</TableCell>
-                          </TableRow>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">25-34</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30">Age</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">3.2%</TableCell>
-                            <TableCell className="text-purple-200">4.2x</TableCell>
-                            <TableCell className="text-purple-200">₹42</TableCell>
-                            <TableCell className="text-purple-200">35%</TableCell>
-                          </TableRow>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">35-44</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30">Age</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">2.8%</TableCell>
-                            <TableCell className="text-purple-200">3.5x</TableCell>
-                            <TableCell className="text-purple-200">₹45</TableCell>
-                            <TableCell className="text-purple-200">22%</TableCell>
-                          </TableRow>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">45+</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30">Age</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">2.1%</TableCell>
-                            <TableCell className="text-purple-200">2.9x</TableCell>
-                            <TableCell className="text-purple-200">₹55</TableCell>
-                            <TableCell className="text-purple-200">18%</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* Device Performance */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <Card className="glass-effect metric-card-hover">
-                    <CardHeader>
-                      <CardTitle className="text-purple-100 flex items-center gap-2">
-                        <SmartphoneIcon className="w-6 h-6 text-purple-400" />
-                        Device Performance
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-[300px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={[
-                            { device: 'Mobile', performance: 68, roi: 3.1 },
-                            { device: 'Desktop', performance: 28, roi: 2.8 },
-                            { device: 'Tablet', performance: 4, roi: 2.5 }
-                          ]}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                            <XAxis dataKey="device" stroke="#E9D5FF" />
-                            <YAxis stroke="#E9D5FF" />
-                            <Tooltip 
-                              contentStyle={{ 
-                                backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                                border: '1px solid rgba(109, 40, 217, 0.2)',
-                                borderRadius: '12px',
-                                color: '#E9D5FF'
-                              }}
-                            />
-                            <Legend />
-                            <Bar dataKey="performance" fill="#F59E0B" name="Usage %" />
-                            <Bar dataKey="roi" fill="#EF4444" name="ROI (x)" />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="glass-effect metric-card-hover">
-                    <CardHeader>
-                      <CardTitle className="text-purple-100">Device Performance Details</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="border-[#6D28D9]/20">
-                            <TableHead className="text-purple-200">Segment</TableHead>
-                            <TableHead className="text-purple-200">Type</TableHead>
-                            <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
-                            <TableHead className="text-purple-200">ROI (x)</TableHead>
-                            <TableHead className="text-purple-200">CAC (₹)</TableHead>
-                            <TableHead className="text-purple-200">Percentage (%)</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">Mobile</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30">Device</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">2.8%</TableCell>
-                            <TableCell className="text-purple-200">3.1x</TableCell>
-                            <TableCell className="text-purple-200">₹45</TableCell>
-                            <TableCell className="text-purple-200">68%</TableCell>
-                          </TableRow>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">Desktop</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30">Device</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">2.1%</TableCell>
-                            <TableCell className="text-purple-200">2.8x</TableCell>
-                            <TableCell className="text-purple-200">₹67</TableCell>
-                            <TableCell className="text-purple-200">28%</TableCell>
-                          </TableRow>
-                          <TableRow className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                            <TableCell className="text-purple-200 font-medium">Tablet</TableCell>
-                            <TableCell className="text-purple-200">
-                              <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30">Device</Badge>
-                            </TableCell>
-                            <TableCell className="text-purple-200">1.9%</TableCell>
-                            <TableCell className="text-purple-200">2.5x</TableCell>
-                            <TableCell className="text-purple-200">₹72</TableCell>
-                            <TableCell className="text-purple-200">4%</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
+              {/* Unified Audience Insights */}
+              <UnifiedAudienceInsights />
 
               {/* Customer Success */}
               <Card className="glass-effect metric-card-hover">
@@ -1749,6 +1427,203 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+// Unified Audience Insights Component
+const UnifiedAudienceInsights: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<'gender' | 'age' | 'device'>('gender');
+
+  // Data definitions
+  const genderData = [
+    { name: 'Female', value: 58, conversion: 2.8, roi: 3.2, cac: 45, type: 'Gender' },
+    { name: 'Male', value: 42, conversion: 2.1, roi: 2.8, cac: 52, type: 'Gender' }
+  ];
+
+  const ageData = [
+    { name: '18-24', value: 25, conversion: 2.5, roi: 2.8, cac: 48, type: 'Age' },
+    { name: '25-34', value: 35, conversion: 3.2, roi: 4.2, cac: 42, type: 'Age' },
+    { name: '35-44', value: 22, conversion: 2.8, roi: 3.5, cac: 45, type: 'Age' },
+    { name: '45+', value: 18, conversion: 2.1, roi: 2.9, cac: 55, type: 'Age' }
+  ];
+
+  const deviceData = [
+    { name: 'Mobile', value: 68, conversion: 2.8, roi: 3.1, cac: 45, type: 'Device' },
+    { name: 'Desktop', value: 28, conversion: 2.1, roi: 2.8, cac: 67, type: 'Device' },
+    { name: 'Tablet', value: 4, conversion: 1.9, roi: 2.5, cac: 72, type: 'Device' }
+  ];
+
+  // Get current data based on selection
+  const getCurrentData = () => {
+    switch (selectedCategory) {
+      case 'gender': return genderData;
+      case 'age': return ageData;
+      case 'device': return deviceData;
+      default: return genderData;
+    }
+  };
+
+  const currentData = getCurrentData();
+
+  // Chart colors
+  const getColors = () => {
+    switch (selectedCategory) {
+      case 'gender': return ['#8B5CF6', '#10B981'];
+      case 'age': return ['#8B5CF6', '#10B981', '#F59E0B', '#EF4444'];
+      case 'device': return ['#F59E0B', '#EF4444', '#06B6D4'];
+      default: return ['#8B5CF6', '#10B981'];
+    }
+  };
+
+  // Badge colors
+  const getBadgeColor = () => {
+    switch (selectedCategory) {
+      case 'gender': return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
+      case 'age': return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
+      case 'device': return 'bg-orange-500/20 text-orange-300 border-orange-500/30';
+      default: return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
+    }
+  };
+
+  // Get appropriate icon
+  const getIcon = () => {
+    switch (selectedCategory) {
+      case 'gender': return UserIcon;
+      case 'age': return UsersIcon;
+      case 'device': return SmartphoneIcon;
+      default: return UserIcon;
+    }
+  };
+
+  const IconComponent = getIcon();
+
+  return (
+    <Card className="glass-effect metric-card-hover">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-purple-100 flex items-center gap-2">
+              <UsersIcon className="w-6 h-6 text-purple-400" />
+              Audience Insights
+            </CardTitle>
+            <CardDescription className="text-purple-300">
+              Conversion, ROI, and CAC by {selectedCategory} segments
+            </CardDescription>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-purple-300">View by:</span>
+            <Select value={selectedCategory} onValueChange={(value: 'gender' | 'age' | 'device') => setSelectedCategory(value)}>
+              <SelectTrigger className="w-[140px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-[#2D1B69] border-purple-500/20">
+                <SelectItem value="gender" className="text-purple-200 focus:bg-purple-500/20">Gender</SelectItem>
+                <SelectItem value="age" className="text-purple-200 focus:bg-purple-500/20">Age</SelectItem>
+                <SelectItem value="device" className="text-purple-200 focus:bg-purple-500/20">Device</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-6">
+          {/* Chart Section */}
+          <div>
+            <h3 className="text-purple-100 font-semibold mb-4 flex items-center gap-2">
+              <IconComponent className="w-5 h-5 text-purple-400" />
+              {selectedCategory === 'gender' ? 'Gender Distribution' : 
+               selectedCategory === 'age' ? 'Age Group Performance' : 
+               'Device Performance'}
+            </h3>
+            <div className="h-[350px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                {selectedCategory === 'gender' ? (
+                  <PieChart>
+                    <Pie
+                      data={currentData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={120}
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {currentData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={getColors()[index % getColors().length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'rgba(45, 27, 105, 0.95)',
+                        border: '1px solid rgba(109, 40, 217, 0.2)',
+                        borderRadius: '12px',
+                        color: '#E9D5FF'
+                      }}
+                      formatter={(value, name) => [`${value}%`, name]}
+                    />
+                    <Legend />
+                  </PieChart>
+                ) : (
+                  <BarChart data={currentData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
+                    <XAxis dataKey="name" stroke="#E9D5FF" />
+                    <YAxis stroke="#E9D5FF" />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'rgba(45, 27, 105, 0.95)',
+                        border: '1px solid rgba(109, 40, 217, 0.2)',
+                        borderRadius: '12px',
+                        color: '#E9D5FF'
+                      }}
+                    />
+                    <Legend />
+                    <Bar dataKey="roi" fill="#8B5CF6" name="ROI (x)" />
+                    <Bar dataKey="conversion" fill="#10B981" name="Conversion (%)" />
+                  </BarChart>
+                )}
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Performance Table */}
+          <div>
+            <h3 className="text-purple-100 font-semibold mb-4">
+              {selectedCategory === 'gender' ? 'Gender' : 
+               selectedCategory === 'age' ? 'Age Group' : 
+               'Device'} Performance Details
+            </h3>
+            <Table>
+              <TableHeader>
+                <TableRow className="border-[#6D28D9]/20">
+                  <TableHead className="text-purple-200">Segment</TableHead>
+                  <TableHead className="text-purple-200">Type</TableHead>
+                  <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
+                  <TableHead className="text-purple-200">ROI (x)</TableHead>
+                  <TableHead className="text-purple-200">CAC (₹)</TableHead>
+                  <TableHead className="text-purple-200">Percentage (%)</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {currentData.map((row, index) => (
+                  <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
+                    <TableCell className="text-purple-200 font-medium">{row.name}</TableCell>
+                    <TableCell className="text-purple-200">
+                      <Badge className={getBadgeColor()}>
+                        {row.type}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-purple-200">{row.conversion}%</TableCell>
+                    <TableCell className="text-purple-200">{row.roi}x</TableCell>
+                    <TableCell className="text-purple-200">₹{row.cac}</TableCell>
+                    <TableCell className="text-purple-200">{row.value}%</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
