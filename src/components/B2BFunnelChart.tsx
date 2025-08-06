@@ -40,9 +40,9 @@ interface B2BFunnelChartProps {
   title?: string;
 }
 
-const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({ 
-  data, 
-  title = "Campaign Funnel View" 
+const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({
+  data,
+  title = "Campaign Funnel View"
 }) => {
   const [selectedCampaign, setSelectedCampaign] = useState<string>('all');
   const [viewMode, setViewMode] = useState<'funnel' | 'pie'>('funnel');
@@ -91,8 +91,8 @@ const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({
     }
   };
 
-  const selectedData = selectedCampaign === 'all' 
-    ? data 
+  const selectedData = selectedCampaign === 'all'
+    ? data
     : data.filter(item => item.campaign === selectedCampaign);
 
   const aggregateData = selectedData.reduce((acc, campaign) => {
@@ -183,7 +183,7 @@ const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({
   return (
     <Card className="bg-[#1A0B2E]/80 border-[#6D28D9]/20">
       <CardHeader className="pb-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <BarChart3Icon className="h-5 w-5 text-purple-400" />
             <CardTitle className="text-lg font-semibold text-purple-200">
@@ -201,8 +201,8 @@ const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({
                 <SelectItem value="pie">Pie Chart</SelectItem>
               </SelectContent>
             </Select>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
               className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10"
             >
@@ -211,27 +211,24 @@ const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({
             </Button>
           </div>
         </div>
-      </CardHeader>
-      
-      <CardContent>
-        {/* Campaign Filter */}
-        <div className="mb-6">
+        <div className="flex items-center justify-start">
           <Select value={selectedCampaign} onValueChange={setSelectedCampaign}>
-            <SelectTrigger className="w-full sm:w-[300px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
-              <FilterIcon className="h-4 w-4 mr-2" />
+            <SelectTrigger className="w-[200px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
               <SelectValue placeholder="Select campaign" />
             </SelectTrigger>
             <SelectContent className="bg-[#1A0B2E] border-purple-500/20">
               <SelectItem value="all">All Campaigns</SelectItem>
-              {data.map((campaign, index) => (
-                <SelectItem key={index} value={campaign.campaign}>
+              {data.map((campaign) => (
+                <SelectItem key={campaign.campaign} value={campaign.campaign}>
                   {campaign.campaign}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
+      </CardHeader>
 
+      <CardContent>
         {/* Chart */}
         <div className="h-[400px] w-full">
           <ResponsiveContainer width="100%" height="100%">
@@ -274,12 +271,12 @@ const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({
         {/* Stage Details */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
           {funnelData.map((stage, index) => (
-            <div 
+            <div
               key={stage.name}
               className="p-4 bg-[#2D1B69]/30 rounded-lg border border-purple-500/20"
             >
               <div className="flex items-center gap-2 mb-2">
-                <div 
+                <div
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: stage.fill }}
                 />
@@ -341,4 +338,4 @@ const B2BFunnelChart: React.FC<B2BFunnelChartProps> = ({
   );
 };
 
-export default B2BFunnelChart; 
+export default B2BFunnelChart;
