@@ -2019,7 +2019,9 @@ const MarketingFunnelChart: React.FC = () => {
 
 // Detailed Attribution Component
 const DetailedAttribution: React.FC = () => {
-  const attributionData = [
+  const [selectedChannel, setSelectedChannel] = useState<string>('all');
+  
+  const allAttributionData = [
     { channel: 'Facebook Ads', firstClick: 35, lastClick: 45, linear: 15, dataDriven: 5, totalContribution: 100 },
     { channel: 'Google Ads', firstClick: 25, lastClick: 35, linear: 20, dataDriven: 8, totalContribution: 88 },
     { channel: 'TikTok Ads', firstClick: 20, lastClick: 15, linear: 12, dataDriven: 3, totalContribution: 50 },
@@ -2028,84 +2030,148 @@ const DetailedAttribution: React.FC = () => {
     { channel: 'Referral', firstClick: 0, lastClick: 0, linear: 20, dataDriven: 1, totalContribution: 21 }
   ];
 
-  const pathData = [
-    { path: 'Facebook → Google → Conversion', frequency: 25, avgTouchpoints: 3.2 },
-    { path: 'Google → Facebook → Conversion', frequency: 20, avgTouchpoints: 2.8 },
-    { path: 'TikTok → Facebook → Conversion', frequency: 15, avgTouchpoints: 2.5 },
-    { path: 'Organic → Google → Conversion', frequency: 12, avgTouchpoints: 2.1 },
-    { path: 'Direct → Conversion', frequency: 10, avgTouchpoints: 1.0 },
-    { path: 'Email → Facebook → Conversion', frequency: 8, avgTouchpoints: 2.3 }
+  const allPathData = [
+    { path: 'Facebook → Google → Conversion', frequency: 25, avgTouchpoints: 3.2, channels: ['Facebook Ads', 'Google Ads'] },
+    { path: 'Google → Facebook → Conversion', frequency: 20, avgTouchpoints: 2.8, channels: ['Google Ads', 'Facebook Ads'] },
+    { path: 'TikTok → Facebook → Conversion', frequency: 15, avgTouchpoints: 2.5, channels: ['TikTok Ads', 'Facebook Ads'] },
+    { path: 'Organic → Google → Conversion', frequency: 12, avgTouchpoints: 2.1, channels: ['Organic Search', 'Google Ads'] },
+    { path: 'Direct → Conversion', frequency: 10, avgTouchpoints: 1.0, channels: ['Direct'] },
+    { path: 'Email → Facebook → Conversion', frequency: 8, avgTouchpoints: 2.3, channels: ['Email Marketing', 'Facebook Ads'] },
+    { path: 'Facebook → TikTok → Conversion', frequency: 7, avgTouchpoints: 2.1, channels: ['Facebook Ads', 'TikTok Ads'] },
+    { path: 'Google → TikTok → Conversion', frequency: 6, avgTouchpoints: 2.4, channels: ['Google Ads', 'TikTok Ads'] }
   ];
+
+  // Filter data based on selected channel
+  const attributionData = selectedChannel === 'all' 
+    ? allAttributionData 
+    : allAttributionData.filter(data => data.channel === selectedChannel);
+
+  const pathData = selectedChannel === 'all' 
+    ? allPathData 
+    : allPathData.filter(path => path.channels.includes(selectedChannel));
+
+  const channelOptions = ['all', ...allAttributionData.map(data => data.channel)];
 
   return (
     <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
       <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <PieChartIcon className="w-6 h-6 text-purple-400" />
-          Detailed Attribution Analysis
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Multi-touch attribution and conversion path analysis
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-purple-100 flex items-center gap-2">
+              <PieChartIcon className="w-6 h-6 text-purple-400" />
+              Detailed Attribution Analysis
+            </CardTitle>
+            <CardDescription className="text-purple-300">
+              Multi-touch attribution and conversion path analysis
+            </CardDescription>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-purple-300">Filter by Channel:</span>
+            <Select value={selectedChannel} onValueChange={setSelectedChannel}>
+              <SelectTrigger className="w-[180px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
+                <SelectValue placeholder="Select channel" />
+              </SelectTrigger>
+              <SelectContent className="bg-[#2D1B69] border-purple-500/20">
+                {channelOptions.map((channel) => (
+                  <SelectItem 
+                    key={channel} 
+                    value={channel}
+                    className="text-purple-200 focus:bg-purple-500/20"
+                  >
+                    {channel === 'all' ? 'All Channels' : channel}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Attribution Methods Comparison */}
           <div>
-            <h3 className="text-purple-100 font-semibold mb-4">Attribution by Channel</h3>
+            <h3 className="text-purple-100 font-semibold mb-4">
+              Attribution by Channel
+              {selectedChannel !== 'all' && (
+                <span className="text-purple-400 text-sm font-normal ml-2">
+                  (showing {selectedChannel})
+                </span>
+              )}
+            </h3>
             <div className="space-y-3">
-              {attributionData.map((channel) => (
-                <div key={channel.channel} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium">{channel.channel}</span>
-                    <span className="text-purple-300 text-sm font-semibold">
-                      {channel.totalContribution}% total
-                    </span>
+              {attributionData.length > 0 ? (
+                attributionData.map((channel) => (
+                  <div key={channel.channel} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-purple-100 font-medium">{channel.channel}</span>
+                      <span className="text-purple-300 text-sm font-semibold">
+                        {channel.totalContribution}% total
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-4 gap-2 text-xs">
+                      <div className="text-center">
+                        <div className="text-purple-400">First Click</div>
+                        <div className="text-purple-100 font-semibold">{channel.firstClick}%</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-purple-400">Last Click</div>
+                        <div className="text-purple-100 font-semibold">{channel.lastClick}%</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-purple-400">Linear</div>
+                        <div className="text-purple-100 font-semibold">{channel.linear}%</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-purple-400">Data-Driven</div>
+                        <div className="text-purple-100 font-semibold">{channel.dataDriven}%</div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-4 gap-2 text-xs">
-                    <div className="text-center">
-                      <div className="text-purple-400">First Click</div>
-                      <div className="text-purple-100 font-semibold">{channel.firstClick}%</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-purple-400">Last Click</div>
-                      <div className="text-purple-100 font-semibold">{channel.lastClick}%</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-purple-400">Linear</div>
-                      <div className="text-purple-100 font-semibold">{channel.linear}%</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-purple-400">Data-Driven</div>
-                      <div className="text-purple-100 font-semibold">{channel.dataDriven}%</div>
-                    </div>
-                  </div>
+                ))
+              ) : (
+                <div className="p-6 text-center">
+                  <p className="text-purple-300">No attribution data found for {selectedChannel}</p>
+                  <p className="text-purple-400 text-sm mt-2">Try selecting a different channel or "All Channels"</p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
           {/* Conversion Paths */}
           <div>
-            <h3 className="text-purple-100 font-semibold mb-4">Top Conversion Paths</h3>
+            <h3 className="text-purple-100 font-semibold mb-4">
+              Top Conversion Paths
+              {selectedChannel !== 'all' && (
+                <span className="text-purple-400 text-sm font-normal ml-2">
+                  (filtered by {selectedChannel})
+                </span>
+              )}
+            </h3>
             <div className="space-y-3">
-              {pathData.map((path, index) => (
-                <div key={path.path} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center text-xs font-bold text-white">
-                        {index + 1}
+              {pathData.length > 0 ? (
+                pathData.map((path, index) => (
+                  <div key={path.path} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center text-xs font-bold text-white">
+                          {index + 1}
+                        </div>
+                        <span className="text-purple-100 font-medium text-sm">{path.path}</span>
                       </div>
-                      <span className="text-purple-100 font-medium text-sm">{path.path}</span>
+                      <span className="text-purple-300 text-sm font-semibold">{path.frequency}%</span>
                     </div>
-                    <span className="text-purple-300 text-sm font-semibold">{path.frequency}%</span>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-purple-400">Avg Touchpoints:</span>
+                      <span className="text-purple-100 font-semibold">{path.avgTouchpoints}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-purple-400">Avg Touchpoints:</span>
-                    <span className="text-purple-100 font-semibold">{path.avgTouchpoints}</span>
-                  </div>
+                ))
+              ) : (
+                <div className="p-6 text-center">
+                  <p className="text-purple-300">No conversion paths found for {selectedChannel}</p>
+                  <p className="text-purple-400 text-sm mt-2">Try selecting a different channel or "All Channels"</p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
