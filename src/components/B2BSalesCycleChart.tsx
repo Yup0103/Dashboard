@@ -104,7 +104,7 @@ const B2BSalesCycleChart: React.FC<B2BSalesCycleChartProps> = ({
   return (
     <Card className="bg-[#1A0B2E]/80 border-[#6D28D9]/20">
       <CardHeader className="pb-4">
-        <div className="flex items-center justify-between">
+        <div className="space-y-4">
           <CardTitle className="text-white text-lg font-semibold">{title}</CardTitle>
           <div className="flex items-center space-x-2">
             <Select value={selectedSegment} onValueChange={setSelectedSegment}>
