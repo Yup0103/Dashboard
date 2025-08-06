@@ -114,9 +114,9 @@ const formatCurrency = (amount: number | string, options?: {
   showSymbol?: boolean;
 }) => {
   const { compact = false, decimals = 0, showSymbol = true } = options || {};
-  
+
   const numAmount = typeof amount === 'string' ? parseFloat(amount.replace(/[^\d.-]/g, '')) : amount;
-  
+
   if (compact) {
     const formatter = new Intl.NumberFormat(CURRENCY_CONFIG.locale, {
       style: 'currency',
@@ -127,14 +127,14 @@ const formatCurrency = (amount: number | string, options?: {
     });
     return formatter.format(numAmount);
   }
-  
+
   const formatter = new Intl.NumberFormat(CURRENCY_CONFIG.locale, {
     style: showSymbol ? 'currency' : 'decimal',
     currency: CURRENCY_CONFIG.code,
     maximumFractionDigits: decimals,
     minimumFractionDigits: decimals
   });
-  
+
   return formatter.format(numAmount);
 };
 
@@ -146,9 +146,9 @@ const formatCurrencyValue = (value: string, options?: {
   // Extract numeric value from strings like "$8.7M", "₹569", "3.2M AED"
   const numericMatch = value.match(/[\d.,]+/);
   if (!numericMatch) return value;
-  
+
   let numericValue = parseFloat(numericMatch[0].replace(/,/g, ''));
-  
+
   // Handle multipliers (K, M, B)
   if (value.includes('K') || value.includes('k')) {
     numericValue *= 1000;
@@ -157,7 +157,7 @@ const formatCurrencyValue = (value: string, options?: {
   } else if (value.includes('B') || value.includes('b')) {
     numericValue *= 1000000000;
   }
-  
+
   return formatCurrency(numericValue, options);
 };
 
@@ -730,12 +730,12 @@ const getTrendIcon = (trend: string) => {
 const MetricCard: React.FC<{ metric: Metric }> = ({ metric }) => {
   const isPositive = metric.change >= 0;
   const isNegative = metric.change < 0;
-  
+
   return (
     <div className="relative group bg-gradient-to-br from-[#1A0B2E]/80 to-[#2D1B69]/60 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 hover:scale-[1.02]">
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
+
       {/* Header with icon and title */}
       <div className="relative flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -745,12 +745,12 @@ const MetricCard: React.FC<{ metric: Metric }> = ({ metric }) => {
           <h3 className="text-sm font-semibold text-purple-200 tracking-wide">{metric.label}</h3>
         </div>
       </div>
-      
+
       {/* Main value */}
       <div className="relative mb-3">
         <p className="text-2xl font-bold text-white tracking-tight">{metric.value}</p>
       </div>
-      
+
       {/* Change indicator */}
       <div className="relative flex items-center gap-2">
         <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
@@ -765,7 +765,7 @@ const MetricCard: React.FC<{ metric: Metric }> = ({ metric }) => {
         </div>
         <span className="text-xs text-purple-400/70">vs previous period</span>
       </div>
-      
+
       {/* Subtle glow effect */}
       <div className={`absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
         isPositive ? 'bg-emerald-500' : isNegative ? 'bg-red-500' : 'bg-purple-500'
@@ -815,7 +815,7 @@ const MetricSection: React.FC<{
             </button>
           </div>
         </div>
-        
+
         {/* Collapsible Content */}
         <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
           isCollapsed ? 'max-h-0 opacity-0' : 'max-h-[3000px] opacity-100'
@@ -829,7 +829,7 @@ const MetricSection: React.FC<{
           </div>
         </div>
       </div>
-      
+
       {/* Subtle glow effect */}
       <div className="absolute -inset-1 rounded-xl bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
     </div>
@@ -906,40 +906,40 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
           .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: rgba(109, 40, 217, 0.7);
           }
-          
+
           .glass-effect {
             background: rgba(45, 27, 105, 0.1);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(109, 40, 217, 0.2);
           }
-          
+
           .metric-card-hover {
             transition: all 0.3s ease;
           }
-          
+
           .metric-card-hover:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(109, 40, 217, 0.3);
             border-color: rgba(109, 40, 217, 0.4);
           }
-          
+
           .priority-badge {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
             border: 1px solid rgba(16, 185, 129, 0.3);
           }
-          
+
           .operational-badge {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2));
             border: 1px solid rgba(245, 158, 11, 0.3);
           }
-          
+
           .analytical-badge {
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
             border: 1px solid rgba(139, 92, 246, 0.3);
           }
         `
       }} />
-      
+
       <div className="max-w-[1800px] mx-auto">
         {/* Modern Executive Header */}
         <div className="sticky top-0 z-50 glass-effect border-b border-[#6D28D9]/20">
@@ -962,7 +962,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 {/* Performance Status */}
                 <div className="flex items-center gap-3">
@@ -972,7 +972,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                       <span className="text-emerald-400 font-semibold">Performance: Excellent</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-2 px-3 py-2 bg-[#2D1B69]/40 rounded-lg border border-[#6D28D9]/30">
                     <TrendingUpIcon className="w-4 h-4 text-emerald-400" />
                     <span className="text-purple-200 text-sm font-medium">+18.3% Revenue</span>
@@ -1074,7 +1074,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 </div>
                 <h2 className="text-2xl font-bold text-purple-100">Strategic Business Metrics</h2>
               </div>
-              
+
               <div className="space-y-8">
                 {executivePrioritySections.map((section) => (
                   <MetricSection
@@ -1098,7 +1098,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 </div>
                 <h2 className="text-2xl font-bold text-purple-100">Day-to-Day Performance</h2>
               </div>
-              
+
               <div className="space-y-8">
                 {operationalSections.map((section) => (
                   <MetricSection
@@ -1122,7 +1122,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 </div>
                 <h2 className="text-2xl font-bold text-purple-100">Deep Dive Analysis</h2>
               </div>
-              
+
               <div className="space-y-8">
                 {analyticalSections.map((section) => (
                   <MetricSection
@@ -1145,7 +1145,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               </div>
               <h2 className="text-2xl font-bold text-purple-100">Strategic Visualizations</h2>
             </div>
-            
+
             <div className="space-y-8">
               {/* Marketing Funnel Chart */}
               <Card className="glass-effect metric-card-hover">
@@ -1272,45 +1272,45 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               </div>
               <h2 className="text-2xl font-bold text-purple-100">Comprehensive Performance Data</h2>
             </div>
-            
+
             <div className="space-y-8">
               {/* Overall Summary Cards */}
               <OverallSummaryCards />
-              
+
               {/* Enhanced Platform and Channel Performance */}
               <EnhancedPlatformTable />
               <EnhancedChannelTable />
-              
+
               {/* Enhanced Trend Analysis */}
               <EnhancedTrendChart />
-              
+
               {/* Enhanced Customer Acquisition */}
               <EnhancedCACCLVChart />
-              
+
               {/* Enhanced Top Campaigns */}
               <EnhancedTopCampaignsTable />
-              
+
               {/* Enhanced Geography/Region Analysis */}
               <EnhancedGeographyMap />
-              
+
               {/* Enhanced Marketing Funnel */}
               <EnhancedMarketingFunnelChart />
-              
+
               {/* Enhanced Attribution Summary */}
               <EnhancedAttributionSummary />
-              
+
               {/* Enhanced Budget Utilization */}
               <EnhancedBudgetUtilization />
-              
+
               {/* Enhanced Forecasting */}
               <EnhancedForecastingView />
-              
+
               {/* Enhanced Audience Insights */}
               <EnhancedAudienceInsights />
-              
+
               {/* Enhanced Creative Performance */}
               <EnhancedCreativePerformance />
-              
+
               {/* Legacy Components for Reference */}
               <SalesPerformanceDeepDive />
               <MarketingEfficiencyDashboard />
@@ -1698,12 +1698,12 @@ const GeographyMap: React.FC = () => {
                     <div>
                       <div className="text-purple-100 font-medium">{region.state}</div>
                       <div className="text-purple-300 text-xs">
-                        {formatCurrency(region.spend)} spend • {region.conversions} conversions
+                        {formatCurrency(region.spend)} spend • {formatCurrency(region.conversions)} conversions
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-purple-100 font-semibold">{region.roi}x ROI</div>
+                    <div className="text-purple-100 font-semibold">{region.roi} ROI</div>
                     <div className="text-purple-300 text-xs">{region.customers.toLocaleString()} customers</div>
                   </div>
                 </div>
@@ -1904,1202 +1904,6 @@ const DetailedAttribution: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Pulse Report Specialized Components
-
-// Sales Performance Deep Dive Component
-const SalesPerformanceDeepDive: React.FC = () => {
-  const customerTypeData = [
-    { type: 'New Customers', share: '63%', count: '3,291', aov: '₹563', unitsPerOrder: '2.6', ordersPerCustomer: '1.1', ddChange: '56.2%' },
-    { type: 'Repeat Customers', share: '31%', count: '1,619', aov: '₹556', unitsPerOrder: '2.8', ordersPerCustomer: '1.1', ddChange: '51.3%' },
-    { type: 'Others', share: '6%', count: '314', aov: '₹751', unitsPerOrder: '2.5', ordersPerCustomer: '1.0', ddChange: '21.4%' }
-  ];
-
-  const regionalData = [
-    { region: 'UAE', share: '14%', count: '731', aov: '₹470', unitsPerOrder: '3.0', sessionsPerUser: '1.2', gvsPerSession: '1.6' },
-    { region: 'KSA', share: '86%', count: '4,493', aov: '₹588', unitsPerOrder: '2.6', sessionsPerUser: '1.3', gvsPerSession: '1.8' }
-  ];
-
-  const mtdData = [
-    { metric: 'MTD GMV', value: '₹59.6M', target: '₹94M', achievement: '63%', projection: '₹81.9M' },
-    { metric: 'MTD Orders', value: '103.1K', target: '131.2K', achievement: '79%', projection: '142.5K' },
-    { metric: 'MTD Units', value: '268.1K', target: '335K', achievement: '80%', projection: '372.9K' },
-    { metric: 'MTD Customers', value: '75.2K', target: 'N/A', achievement: 'N/A', projection: 'N/A' }
-  ];
-
-  return (
-    <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <BarChart3Icon className="w-6 h-6 text-purple-400" />
-          Sales Performance Deep Dive
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Detailed sales breakdown by customer type and region with MTD performance
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Customer Type Breakdown */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">Customer Type Breakdown</h3>
-            <div className="space-y-3">
-              {customerTypeData.map((customer) => (
-                <div key={customer.type} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium">{customer.type}</span>
-                    <span className="text-purple-300 text-sm font-semibold">{customer.share}</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <div className="text-purple-400">Count</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(customer.count)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">AOV</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(customer.aov)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Units/Order</div>
-                      <div className="text-purple-100 font-semibold">{customer.unitsPerOrder}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">D/D Change</div>
-                      <div className="text-emerald-400 font-semibold">{customer.ddChange}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Regional Breakdown */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">Regional Performance</h3>
-            <div className="space-y-3">
-              {regionalData.map((region) => (
-                <div key={region.region} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium">{region.region}</span>
-                    <span className="text-purple-300 text-sm font-semibold">{region.share}</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <div className="text-purple-400">Count</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(region.count)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">AOV</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(region.aov)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Units/Order</div>
-                      <div className="text-purple-100 font-semibold">{region.unitsPerOrder}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Sessions/User</div>
-                      <div className="text-purple-100 font-semibold">{region.sessionsPerUser}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* MTD Performance */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">MTD Performance vs Targets</h3>
-            <div className="space-y-3">
-              {mtdData.map((item) => (
-                <div key={item.metric} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium text-sm">{item.metric}</span>
-                    <span className="text-purple-300 text-sm font-semibold">{formatCurrency(item.value)}</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <div className="text-purple-400">Target</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(item.target)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Achievement</div>
-                      <div className="text-purple-100 font-semibold">{item.achievement}</div>
-                    </div>
-                    {item.projection !== 'N/A' && (
-                      <>
-                        <div className="col-span-2">
-                          <div className="text-purple-400">Projection</div>
-                          <div className="text-emerald-400 font-semibold">{formatCurrency(item.projection)}</div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Marketing Efficiency Dashboard Component
-const MarketingEfficiencyDashboard: React.FC = () => {
-  const overallData = [
-    { metric: 'Overall CIR', value: '20%', yesterday: '18%', change: '+2%', trend: 'up' },
-    { metric: 'Overall CPO', value: '₹31', yesterday: '₹33', change: '-₹2', trend: 'down' },
-    { metric: 'Overall CAC', value: '₹51', yesterday: '₹56', change: '-₹5', trend: 'down' },
-    { metric: 'Daily Spend', value: '₹175.7K', yesterday: '₹144.8K', change: '+₹30.9K', trend: 'up' }
-  ];
-
-  const channelData = [
-    { channel: 'Affiliate', spend: '₹77.8K', share: '44%', cir: '42%', installs: '67%', status: 'excellent' },
-    { channel: 'Social', spend: '₹34.9K', share: '20%', cir: '38%', installs: '15%', status: 'good' },
-    { channel: 'Remarketing', spend: '₹12.6K', share: '7%', cir: '35%', installs: '8%', status: 'good' },
-    { channel: 'UAC', spend: '₹5.7K', share: '3%', cir: '45%', installs: '5%', status: 'average' },
-    { channel: 'SEM Branded', spend: '₹3.4K', share: '2%', cir: '28%', installs: '2%', status: 'excellent' },
-    { channel: 'Influencers', spend: '₹19K', share: '11%', cir: '15051%', installs: '3%', status: 'poor' }
-  ];
-
-  const budgetData = [
-    { metric: 'MTD Spend', value: '₹3.72M', budget: '₹3.9M', utilization: '95%' },
-    { metric: 'March Budget', value: '₹3.9M', target: '₹3.9M', utilization: '100%' },
-    { metric: 'Projection', value: '₹4.9M', target: '₹3.9M', utilization: '126%' },
-    { metric: 'Required Daily Run Rate', value: '₹4.9M', target: '₹3.9M', utilization: '126%' }
-  ];
-
-  return (
-    <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <TrendingUpIcon className="w-6 h-6 text-purple-400" />
-          Marketing Efficiency Dashboard
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          CIR, ROI, CPO, CAC with channel breakdown and budget utilization
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Overall Performance */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">Overall Performance</h3>
-            <div className="space-y-3">
-              {overallData.map((item) => (
-                <div key={item.metric} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium text-sm">{item.metric}</span>
-                    <span className="text-purple-300 text-sm font-semibold">{formatCurrency(item.value)}</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <div className="text-purple-400">Yesterday</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(item.yesterday)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Change</div>
-                      <div className={`font-semibold ${item.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}`}>
-                        {item.change}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Channel Performance */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">Channel Performance</h3>
-            <div className="space-y-3">
-              {channelData.map((channel) => (
-                <div key={channel.channel} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium text-sm">{channel.channel}</span>
-                    <Badge className={getPerformanceColor(channel.status)}>
-                      {channel.status}
-                    </Badge>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <div className="text-purple-400">Spend</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(channel.spend)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Share</div>
-                      <div className="text-purple-100 font-semibold">{channel.share}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">CIR</div>
-                      <div className="text-purple-100 font-semibold">{channel.cir}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Installs</div>
-                      <div className="text-purple-100 font-semibold">{channel.installs}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Budget Utilization */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">Budget Utilization</h3>
-            <div className="space-y-3">
-              {budgetData.map((item) => (
-                <div key={item.metric} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium text-sm">{item.metric}</span>
-                    <span className="text-purple-300 text-sm font-semibold">{formatCurrency(item.value)}</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <div className="text-purple-400">Target</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(item.target)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Utilization</div>
-                      <div className={`font-semibold ${parseInt(item.utilization) > 100 ? 'text-red-400' : 'text-emerald-400'}`}>
-                        {item.utilization}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Trend Analysis & Forecasting Component
-const TrendAnalysisForecasting: React.FC = () => {
-  const trendData = [
-    { date: 'Mar 1', revenue: 2.1, orders: 3200, ordersPerSession: 1.8, installs: 45000, sessions: 180000 },
-    { date: 'Mar 5', revenue: 2.8, orders: 4200, ordersPerSession: 2.1, installs: 52000, sessions: 200000 },
-    { date: 'Mar 10', revenue: 3.2, orders: 4800, ordersPerSession: 2.4, installs: 58000, sessions: 220000 },
-    { date: 'Mar 15', revenue: 2.9, orders: 4400, ordersPerSession: 2.2, installs: 54000, sessions: 200000 },
-    { date: 'Mar 20', revenue: 3.5, orders: 5200, ordersPerSession: 2.6, installs: 62000, sessions: 240000 },
-    { date: 'Mar 24', revenue: 3.2, orders: 5624, ordersPerSession: 2.8, installs: 70300, sessions: 408500 }
-  ];
-
-  const forecastData = [
-    { metric: '30-Day Revenue Forecast', current: '₹3.2M', projected: '₹4.8M', growth: '+50%' },
-    { metric: '30-Day Orders Forecast', current: '5.6K', projected: '8.4K', growth: '+50%' },
-    { metric: '30-Day Customers Forecast', current: '5.2K', projected: '7.8K', growth: '+50%' },
-    { metric: 'March Target Achievement', current: '87%', projected: '95%', growth: '+8%' }
-  ];
-
-  return (
-    <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <LineChartIcon className="w-6 h-6 text-purple-400" />
-          Trend Analysis & Forecasting
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          March 1-24 trends with 30-day projections and target achievement
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Trend Charts */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">March Trends (1-24)</h3>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={trendData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.3} />
-                  <XAxis dataKey="date" stroke="#E9D5FF" />
-                  <YAxis stroke="#E9D5FF" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                      border: '1px solid rgba(109, 40, 217, 0.2)',
-                      borderRadius: '12px',
-                      color: '#E9D5FF'
-                    }}
-                  />
-                  <Legend />
-                  <Line type="monotone" dataKey="revenue" stroke="#10B981" strokeWidth={2} name="Revenue (M)" />
-                  <Line type="monotone" dataKey="orders" stroke="#3B82F6" strokeWidth={2} name="Orders (K)" />
-                  <Area type="monotone" dataKey="sessions" fill="#8B5CF6" fillOpacity={0.3} stroke="#8B5CF6" name="Sessions (K)" />
-                </ComposedChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          {/* Forecast Data */}
-          <div>
-            <h3 className="text-purple-100 font-semibold mb-4">30-Day Forecast</h3>
-            <div className="space-y-3">
-              {forecastData.map((item) => (
-                <div key={item.metric} className="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-purple-100 font-medium text-sm">{item.metric}</span>
-                    <span className="text-emerald-400 text-sm font-semibold">{item.growth}</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <div className="text-purple-400">Current</div>
-                      <div className="text-purple-100 font-semibold">{formatCurrency(item.current)}</div>
-                    </div>
-                    <div>
-                      <div className="text-purple-400">Projected</div>
-                      <div className="text-emerald-400 font-semibold">{formatCurrency(item.projected)}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced Overall Summary Cards Component
-const OverallSummaryCards: React.FC = () => {
-  const marketingMetrics = [
-    { label: 'Total Spend', value: '₹2.4M', change: 12.5, trend: 'up', icon: DollarSignIcon },
-    { label: 'CPC', value: '₹2.69', change: -3.2, trend: 'down', icon: DollarSignIcon },
-    { label: 'CPM', value: '₹53.10', change: -1.8, trend: 'down', icon: DollarSignIcon },
-    { label: 'CPConv', value: '₹193.55', change: -7.8, trend: 'down', icon: DollarSignIcon },
-    { label: 'ROI', value: '3.6x', change: 5.2, trend: 'up', icon: TrendingUpIcon },
-    { label: 'Conversions', value: '12.4K', change: 22.1, trend: 'up', icon: TargetIcon }
-  ];
-
-  const salesMetrics = [
-    { label: 'Total Revenue', value: '₹8.7M', change: 18.3, trend: 'up', icon: DollarSignIcon },
-    { label: 'Total Customers', value: '45.2K', change: 15.7, trend: 'up', icon: UsersIcon },
-    { label: 'New Customers', value: '28.5K', change: 18.9, trend: 'up', icon: UserPlusIcon },
-    { label: 'Repeat Customers', value: '16.7K', change: 10.2, trend: 'up', icon: RepeatIcon },
-    { label: 'Units Sold', value: '89.3K', change: 22.4, trend: 'up', icon: ShoppingCartIcon },
-    { label: 'AOV', value: '₹701', change: 12.7, trend: 'up', icon: ShoppingCartIcon }
-  ];
-
-  return (
-    <div className="space-y-6">
-      {/* Marketing Metrics */}
-      <Card className="glass-effect metric-card-hover">
-        <CardHeader>
-          <CardTitle className="text-purple-100 flex items-center gap-2">
-            <BarChart3Icon className="w-6 h-6 text-purple-400" />
-            Marketing Metrics
-          </CardTitle>
-          <CardDescription className="text-purple-300">
-            Key performance indicators for marketing campaigns
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {marketingMetrics.map((metric, index) => (
-              <div key={index} className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <metric.icon className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm text-purple-300 font-medium">{metric.label}</span>
-                </div>
-                <p className="text-xl font-bold text-purple-200 mb-1">{metric.value}</p>
-                <div className="flex items-center gap-1">
-                  {getTrendIcon(metric.trend)}
-                  <span className={`text-sm font-medium ${metric.trend === 'up' ? 'text-emerald-400' : metric.trend === 'down' ? 'text-red-400' : 'text-purple-400'}`}>
-                    {metric.change > 0 ? '+' : ''}{metric.change}%
-                  </span>
-                  <span className="text-xs text-purple-400">vs previous period</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Sales Metrics */}
-      <Card className="glass-effect metric-card-hover">
-        <CardHeader>
-          <CardTitle className="text-purple-100 flex items-center gap-2">
-            <ShoppingCartIcon className="w-6 h-6 text-purple-400" />
-            Sales Metrics
-          </CardTitle>
-          <CardDescription className="text-purple-300">
-            Revenue and customer acquisition performance
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {salesMetrics.map((metric, index) => (
-              <div key={index} className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <metric.icon className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm text-purple-300 font-medium">{metric.label}</span>
-                </div>
-                <p className="text-xl font-bold text-purple-200 mb-1">{metric.value}</p>
-                <div className="flex items-center gap-1">
-                  {getTrendIcon(metric.trend)}
-                  <span className={`text-sm font-medium ${metric.trend === 'up' ? 'text-emerald-400' : metric.trend === 'down' ? 'text-red-400' : 'text-purple-400'}`}>
-                    {metric.change > 0 ? '+' : ''}{metric.change}%
-                  </span>
-                  <span className="text-xs text-purple-400">vs previous period</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-};
-
-// Enhanced Platform Performance Table
-const EnhancedPlatformTable: React.FC = () => {
-  const platformData = [
-    { platform: 'Facebook', spend: 1.2, spendPercent: 50, roi: '3.8x', cpconv: '₹45.20', status: 'excellent', color: '#1877F2' },
-    { platform: 'Google Ads', spend: 0.72, spendPercent: 30, roi: '4.2x', cpconv: '₹38.50', status: 'excellent', color: '#4285F4' },
-    { platform: 'TikTok', spend: 0.36, spendPercent: 15, roi: '2.9x', cpconv: '₹52.80', status: 'good', color: '#000000' },
-    { platform: 'Instagram', spend: 0.18, spendPercent: 7.5, roi: '3.2x', cpconv: '₹41.20', status: 'good', color: '#E4405F' },
-    { platform: 'YouTube', spend: 0.12, spendPercent: 5, roi: '2.5x', cpconv: '₹67.40', status: 'average', color: '#FF0000' },
-    { platform: 'Other', spend: 0.12, spendPercent: 2.5, roi: '2.1x', cpconv: '₹89.50', status: 'poor', color: '#6B7280' }
-  ];
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <GlobeIcon className="w-6 h-6 text-purple-400" />
-          Paid Platform Performance
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Platform-level split of spends, ROI, and CPConv with percentage distribution
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {/* Spend Distribution Chart */}
-          <div className="h-[200px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={platformData} layout="horizontal">
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis type="number" stroke="#E9D5FF" tick={{ fill: '#E9D5FF', fontSize: 12 }} />
-                <YAxis dataKey="platform" type="category" stroke="#E9D5FF" width={80} tick={{ fill: '#E9D5FF', fontSize: 12 }} />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                  formatter={(value: any, name: any) => [
-                    `${value}%`,
-                    'Spend Share'
-                  ]}
-                />
-                <Bar dataKey="spendPercent" fill="#8B5CF6" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Detailed Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Platform</TableHead>
-                <TableHead className="text-purple-200">Spend</TableHead>
-                <TableHead className="text-purple-200">% of Total</TableHead>
-                <TableHead className="text-purple-200">ROI</TableHead>
-                <TableHead className="text-purple-200">CPConv</TableHead>
-                <TableHead className="text-purple-200">Status</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {platformData.map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: row.color }}></div>
-                      {row.platform}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-purple-200">₹{row.spend}M</TableCell>
-                  <TableCell className="text-purple-200">{row.spendPercent}%</TableCell>
-                  <TableCell className="text-purple-200">{row.roi}</TableCell>
-                  <TableCell className="text-purple-200">{row.cpconv}</TableCell>
-                  <TableCell>
-                    <Badge className={getPerformanceColor(row.status)}>
-                      {row.status}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced Channel Performance Table
-const EnhancedChannelTable: React.FC = () => {
-  const channelData = [
-    { channel: 'Paid Search', traffic: '45.2K', trafficValue: 45.2, sessions: '89.4K', newVisitors: '67%', repeatVisitors: '33%', conversion: '2.8%', color: '#4285F4' },
-    { channel: 'Organic Search', traffic: '28.7K', trafficValue: 28.7, sessions: '56.2K', newVisitors: '72%', repeatVisitors: '28%', conversion: '1.9%', color: '#34A853' },
-    { channel: 'Social Media', traffic: '15.3K', trafficValue: 15.3, sessions: '32.1K', newVisitors: '58%', repeatVisitors: '42%', conversion: '3.2%', color: '#E4405F' },
-    { channel: 'Direct', traffic: '12.8K', trafficValue: 12.8, sessions: '25.6K', newVisitors: '45%', repeatVisitors: '55%', conversion: '4.1%', color: '#8B5CF6' },
-    { channel: 'Referral', traffic: '8.9K', trafficValue: 8.9, sessions: '18.7K', newVisitors: '63%', repeatVisitors: '37%', conversion: '2.5%', color: '#F59E0B' },
-    { channel: 'Email', traffic: '6.4K', trafficValue: 6.4, sessions: '12.8K', newVisitors: '38%', repeatVisitors: '62%', conversion: '5.8%', color: '#10B981' }
-  ];
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <BarChart3Icon className="w-6 h-6 text-purple-400" />
-          Channel Performance Overview
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          All channel view for traffic, sessions, new and repeat visitors
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {/* Traffic Distribution Chart */}
-          <div className="h-[200px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={channelData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis 
-                  dataKey="channel" 
-                  stroke="#E9D5FF" 
-                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                  angle={-45}
-                  textAnchor="end"
-                  height={80}
-                />
-                <YAxis 
-                  stroke="#E9D5FF" 
-                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                  label={{ value: 'Traffic (K)', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle', fill: '#E9D5FF' } }}
-                />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                  formatter={(value: any, name: any) => [
-                    `${value}K`,
-                    'Traffic'
-                  ]}
-                />
-                <Bar 
-                  dataKey="trafficValue" 
-                  fill="#8B5CF6" 
-                  radius={[4, 4, 0, 0]}
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Detailed Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Channel</TableHead>
-                <TableHead className="text-purple-200">Traffic</TableHead>
-                <TableHead className="text-purple-200">Sessions</TableHead>
-                <TableHead className="text-purple-200">New Visitors</TableHead>
-                <TableHead className="text-purple-200">Repeat Visitors</TableHead>
-                <TableHead className="text-purple-200">Conversion Rate</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {channelData.map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: row.color }}></div>
-                      {row.channel}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.traffic)}</TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.sessions)}</TableCell>
-                  <TableCell className="text-purple-200">{row.newVisitors}</TableCell>
-                  <TableCell className="text-purple-200">{row.repeatVisitors}</TableCell>
-                  <TableCell className="text-purple-200">{row.conversion}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced Trend Chart for Key KPIs
-const EnhancedTrendChart: React.FC = () => {
-  const trendData = [
-    { date: 'Jan', spend: 180, revenue: 650, roi: 3.6, cpconv: 45 },
-    { date: 'Feb', spend: 200, revenue: 720, roi: 3.6, cpconv: 42 },
-    { date: 'Mar', spend: 220, revenue: 800, roi: 3.6, cpconv: 40 },
-    { date: 'Apr', spend: 240, revenue: 880, roi: 3.7, cpconv: 38 },
-    { date: 'May', spend: 260, revenue: 960, roi: 3.7, cpconv: 36 },
-    { date: 'Jun', spend: 280, revenue: 1040, roi: 3.7, cpconv: 35 }
-  ];
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <LineChartIcon className="w-6 h-6 text-purple-400" />
-          Daily/Weekly/Monthly Trend of Key KPIs
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Separate line trends for spend vs ROI, spend vs CPConv
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {/* Spend vs Revenue Trend */}
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={trendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis 
-                  dataKey="date" 
-                  stroke="#E9D5FF" 
-                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                />
-                <YAxis yAxisId="left" stroke="#E9D5FF" />
-                <YAxis yAxisId="right" orientation="right" stroke="#E9D5FF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Legend />
-                <Area 
-                  yAxisId="left"
-                  type="monotone" 
-                  dataKey="spend" 
-                  stackId="1" 
-                  stroke="#8B5CF6" 
-                  fill="#8B5CF6" 
-                  fillOpacity={0.3}
-                  name="Spend (₹K)"
-                />
-                <Line 
-                  yAxisId="right"
-                  type="monotone" 
-                  dataKey="revenue" 
-                  stroke="#10B981" 
-                  strokeWidth={3}
-                  name="Revenue (₹K)"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* ROI and CPConv Trend */}
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={trendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis 
-                  dataKey="date" 
-                  stroke="#E9D5FF" 
-                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                />
-                <YAxis yAxisId="left" stroke="#E9D5FF" />
-                <YAxis yAxisId="right" orientation="right" stroke="#E9D5FF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Legend />
-                <Line 
-                  yAxisId="left"
-                  type="monotone" 
-                  dataKey="roi" 
-                  stroke="#F59E0B" 
-                  strokeWidth={3}
-                  name="ROI (x)"
-                />
-                <Line 
-                  yAxisId="right"
-                  type="monotone" 
-                  dataKey="cpconv" 
-                  stroke="#EF4444" 
-                  strokeWidth={3}
-                  name="CPConv (₹)"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced CAC/CLV Comparison Chart
-const EnhancedCACCLVChart: React.FC = () => {
-  const cacClvData = [
-    { metric: 'CAC', value: 51, target: 60, color: '#EF4444' },
-    { metric: 'CLV', value: 2100, target: 1800, color: '#10B981' },
-    { metric: 'Revenue per Customer', value: 192, target: 150, color: '#8B5CF6' },
-    { metric: 'AOV', value: 701, target: 600, color: '#F59E0B' }
-  ];
-
-  const trendData = [
-    { month: 'Jan', cac: 65, clv: 1800 },
-    { month: 'Feb', cac: 58, clv: 1900 },
-    { month: 'Mar', cac: 55, clv: 2000 },
-    { month: 'Apr', cac: 52, clv: 2050 },
-    { month: 'May', cac: 51, clv: 2100 },
-    { month: 'Jun', cac: 49, clv: 2150 }
-  ];
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <UsersIcon className="w-6 h-6 text-purple-400" />
-          Customer Acquisition Overview
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          CAC, CLV, Revenue per Customer, AOV with trend comparison
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {/* Summary KPIs */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {cacClvData.map((item, index) => (
-              <div key={index} className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
-                  <span className="text-sm text-purple-300 font-medium">{item.metric}</span>
-                </div>
-                <p className="text-xl font-bold text-purple-200 mb-1">₹{item.value}</p>
-                <div className="flex items-center gap-1">
-                  <span className="text-xs text-purple-400">Target: ₹{item.target}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CAC/CLV Trend Comparison */}
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={trendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis 
-                  dataKey="month" 
-                  stroke="#E9D5FF" 
-                  tick={{ fill: '#E9D5FF', fontSize: 12 }}
-                />
-                <YAxis yAxisId="left" stroke="#E9D5FF" />
-                <YAxis yAxisId="right" orientation="right" stroke="#E9D5FF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Legend />
-                <Line 
-                  yAxisId="left"
-                  type="monotone" 
-                  dataKey="cac" 
-                  stroke="#EF4444" 
-                  strokeWidth={3}
-                  name="CAC (₹)"
-                />
-                <Line 
-                  yAxisId="right"
-                  type="monotone" 
-                  dataKey="clv" 
-                  stroke="#10B981" 
-                  strokeWidth={3}
-                  name="CLV (₹)"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced Top Campaigns Table with ROI Tags
-const EnhancedTopCampaignsTable: React.FC = () => {
-  const campaignsData = [
-    { name: 'Summer Sale 2024', spend: '₹450K', conversions: '2.4K', roi: '4.2x', creativeType: 'Video', performance: 'excellent', color: '#10B981' },
-    { name: 'Brand Awareness Q1', spend: '₹320K', conversions: '1.8K', roi: '3.1x', creativeType: 'Image', performance: 'good', color: '#8B5CF6' },
-    { name: 'Retargeting Campaign', spend: '₹280K', conversions: '2.1K', roi: '5.8x', creativeType: 'Dynamic', performance: 'excellent', color: '#10B981' },
-    { name: 'Holiday Special', spend: '₹220K', conversions: '1.2K', roi: '2.8x', creativeType: 'Carousel', performance: 'good', color: '#8B5CF6' },
-    { name: 'Product Launch', spend: '₹180K', conversions: '890', roi: '3.5x', creativeType: 'Video', performance: 'good', color: '#8B5CF6' },
-    { name: 'Seasonal Promotion', spend: '₹150K', conversions: '720', roi: '2.9x', creativeType: 'Image', performance: 'average', color: '#F59E0B' }
-  ];
-
-  const getROIColor = (roi: string) => {
-    const roiValue = parseFloat(roi.replace('x', ''));
-    if (roiValue >= 4.0) return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-    if (roiValue >= 3.0) return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-    if (roiValue >= 2.0) return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
-    return 'bg-red-500/20 text-red-400 border-red-500/30';
-  };
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <TargetIcon className="w-6 h-6 text-purple-400" />
-          Top Campaigns Performance
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Top campaigns by spend, conversions, ROI, creative type with color-coded performance tags
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {/* ROI Distribution Chart */}
-          <div className="h-[200px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={campaignsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis dataKey="name" stroke="#E9D5FF" angle={-45} textAnchor="end" height={80} />
-                <YAxis stroke="#E9D5FF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Bar dataKey="roi" fill="#8B5CF6" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Detailed Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Campaign</TableHead>
-                <TableHead className="text-purple-200">Spend</TableHead>
-                <TableHead className="text-purple-200">Conversions</TableHead>
-                <TableHead className="text-purple-200">ROI</TableHead>
-                <TableHead className="text-purple-200">Creative Type</TableHead>
-                <TableHead className="text-purple-200">Performance</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {campaignsData.map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: row.color }}></div>
-                      {row.name}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.spend)}</TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.conversions)}</TableCell>
-                  <TableCell>
-                    <Badge className={`${getROIColor(row.roi)} border`}>
-                      {row.roi}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-purple-200">{row.creativeType}</TableCell>
-                  <TableCell>
-                    <Badge className={getPerformanceColor(row.performance)}>
-                      {row.performance}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced Geography/Region Map
-const EnhancedGeographyMap: React.FC = () => {
-  const regionData = [
-    { region: 'Maharashtra', spend: '₹450K', conversions: '2.1K', roi: '4.2x', customers: '8.5K', color: '#10B981' },
-    { region: 'Delhi NCR', spend: '₹380K', conversions: '1.8K', roi: '3.8x', customers: '7.2K', color: '#8B5CF6' },
-    { region: 'Karnataka', spend: '₹320K', conversions: '1.5K', roi: '3.5x', customers: '6.1K', color: '#8B5CF6' },
-    { region: 'Tamil Nadu', spend: '₹280K', conversions: '1.3K', roi: '3.2x', customers: '5.4K', color: '#F59E0B' },
-    { region: 'Gujarat', spend: '₹240K', conversions: '1.1K', roi: '3.0x', customers: '4.8K', color: '#F59E0B' },
-    { region: 'Others', spend: '₹730K', conversions: '3.6K', roi: '2.8x', customers: '13.2K', color: '#EF4444' }
-  ];
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <MapIcon className="w-6 h-6 text-purple-400" />
-          Geography/Region Performance
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Spend, conversions, ROI, and customers by state/region with interactive visualization
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {/* Region Performance Chart */}
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={regionData} layout="horizontal">
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis type="number" stroke="#E9D5FF" />
-                <YAxis dataKey="region" type="category" stroke="#E9D5FF" width={100} />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Legend />
-                <Bar dataKey="spend" fill="#8B5CF6" name="Spend (₹K)" />
-                <Bar dataKey="conversions" fill="#10B981" name="Conversions" />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Region Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Region</TableHead>
-                <TableHead className="text-purple-200">Spend</TableHead>
-                <TableHead className="text-purple-200">Conversions</TableHead>
-                <TableHead className="text-purple-200">ROI</TableHead>
-                <TableHead className="text-purple-200">Customers</TableHead>
-                <TableHead className="text-purple-200">Performance</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {regionData.map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: row.color }}></div>
-                      {row.region}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.spend)}</TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.conversions)}</TableCell>
-                  <TableCell className="text-purple-200">{row.roi}</TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.customers)}</TableCell>
-                  <TableCell>
-                    <Badge className={getPerformanceColor(row.roi >= '3.5x' ? 'excellent' : row.roi >= '3.0x' ? 'good' : 'average')}>
-                      {row.roi >= '3.5x' ? 'excellent' : row.roi >= '3.0x' ? 'good' : 'average'}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced Marketing Funnel Chart
-const EnhancedMarketingFunnelChart: React.FC = () => {
-  const funnelData = [
-    { stage: 'Impressions', value: 1000000, percentage: 100, color: '#8B5CF6' },
-    { stage: 'Clicks', value: 45000, percentage: 4.5, color: '#10B981' },
-    { stage: 'Landing Page Visits', value: 42000, percentage: 4.2, color: '#F59E0B' },
-    { stage: 'Conversions', value: 12400, percentage: 1.24, color: '#EF4444' },
-    { stage: 'Sales', value: 11800, percentage: 1.18, color: '#8B5CF6' },
-    { stage: 'Repeat Customers', value: 5900, percentage: 0.59, color: '#10B981' }
-  ];
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <BarChart3Icon className="w-6 h-6 text-purple-400" />
-          Marketing Funnel Analysis
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Conversion funnel from impressions to repeat customers with drop-off percentages
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {/* Funnel Chart */}
-          <div className="h-[400px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <RechartsFunnelChart data={funnelData}>
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Funnel
-                  dataKey="value"
-                  nameKey="stage"
-                  data={funnelData}
-                  isAnimationActive
-                >
-                  {funnelData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Funnel>
-              </RechartsFunnelChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Funnel Details Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Stage</TableHead>
-                <TableHead className="text-purple-200">Value</TableHead>
-                <TableHead className="text-purple-200">Conversion Rate</TableHead>
-                <TableHead className="text-purple-200">Drop-off</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {funnelData.map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: row.color }}></div>
-                      {row.stage}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.value)}</TableCell>
-                  <TableCell className="text-purple-200">{row.percentage}%</TableCell>
-                  <TableCell className="text-purple-200">
-                    {index < funnelData.length - 1 ? 
-                      `${((funnelData[index].value - funnelData[index + 1].value) / funnelData[index].value * 100).toFixed(1)}%` : 
-                      'N/A'
-                    }
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Enhanced Attribution Summary
-const EnhancedAttributionSummary: React.FC = () => {
-  const attributionData = [
-    { channel: 'Facebook', firstClick: 35, lastClick: 45, linear: 15, dataDriven: 5, color: '#1877F2' },
-    { channel: 'Google Ads', firstClick: 25, lastClick: 30, linear: 20, dataDriven: 8, color: '#4285F4' },
-    { channel: 'TikTok', firstClick: 15, lastClick: 12, linear: 10, dataDriven: 3, color: '#000000' },
-    { channel: 'Instagram', firstClick: 10, lastClick: 8, linear: 8, dataDriven: 2, color: '#E4405F' },
-    { channel: 'Organic', firstClick: 15, lastClick: 5, linear: 12, dataDriven: 4, color: '#34A853' }
-  ];
-
-  return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <PieChartIcon className="w-6 h-6 text-purple-400" />
-          Attribution Summary
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          First click, last click, linear, and data-driven contribution of each channel
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {/* Attribution Chart */}
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={attributionData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis dataKey="channel" stroke="#E9D5FF" />
-                <YAxis stroke="#E9D5FF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Legend />
-                <Bar dataKey="firstClick" stackId="a" fill="#8B5CF6" name="First Click" />
-                <Bar dataKey="lastClick" stackId="a" fill="#10B981" name="Last Click" />
-                <Bar dataKey="linear" stackId="a" fill="#F59E0B" name="Linear" />
-                <Bar dataKey="dataDriven" stackId="a" fill="#EF4444" name="Data-Driven" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Attribution Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Channel</TableHead>
-                <TableHead className="text-purple-200">First Click (%)</TableHead>
-                <TableHead className="text-purple-200">Last Click (%)</TableHead>
-                <TableHead className="text-purple-200">Linear (%)</TableHead>
-                <TableHead className="text-purple-200">Data-Driven (%)</TableHead>
-                <TableHead className="text-purple-200">Total (%)</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {attributionData.map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: row.color }}></div>
-                      {row.channel}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-purple-200">{row.firstClick}%</TableCell>
-                  <TableCell className="text-purple-200">{row.lastClick}%</TableCell>
-                  <TableCell className="text-purple-200">{row.linear}%</TableCell>
-                  <TableCell className="text-purple-200">{row.dataDriven}%</TableCell>
-                  <TableCell className="text-purple-200 font-bold">
-                    {row.firstClick + row.lastClick + row.linear + row.dataDriven}%
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
         </div>
       </CardContent>
     </Card>
@@ -3662,12 +2466,12 @@ const ExecutiveSummary: React.FC = () => {
         {summaryMetrics.map((metric, index) => {
           const isPositive = metric.change >= 0;
           const isNegative = metric.change < 0;
-          
+
           return (
             <div key={index} className="relative group bg-gradient-to-br from-[#1A0B2E]/80 to-[#2D1B69]/60 backdrop-blur-sm rounded-xl p-5 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 hover:scale-[1.02]">
               {/* Background gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
+
               {/* Header with icon and title */}
               <div className="relative flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-purple-200 tracking-wide">{metric.label}</h3>
@@ -3675,12 +2479,12 @@ const ExecutiveSummary: React.FC = () => {
                   <metric.icon className="w-4 h-4 text-purple-300" />
                 </div>
               </div>
-              
+
               {/* Main value */}
               <div className="relative mb-2">
                 <p className="text-xl font-bold text-white tracking-tight">{metric.value}</p>
               </div>
-              
+
               {/* Change indicator */}
               <div className="relative flex items-center gap-2">
                 <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
@@ -3695,11 +2499,11 @@ const ExecutiveSummary: React.FC = () => {
                 </div>
                 <span className="text-xs text-purple-400/70">vs previous period</span>
               </div>
-              
+
               {/* Subtle glow effect */}
               <div className={`absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
-                isPositive ? 'bg-emerald-500' : isNegative ? 'bg-red-500' : 'bg-purple-500'
-              } blur-sm`} />
+                isPositive ? 'bg-emerald-500' : isNegative ?        ? 'bg-red-500' : 'bg-purple-500'
+      } blur-sm`} />
             </div>
           );
         })}
@@ -3708,4 +2512,4 @@ const ExecutiveSummary: React.FC = () => {
   );
 };
 
-export default ExecutiveMetrics; 
+export default ExecutiveMetrics;
