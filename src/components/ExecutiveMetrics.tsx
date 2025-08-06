@@ -1436,8 +1436,6 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
 
               {/* Enhanced Audience Insights */}
               <EnhancedAudienceInsights />
-
-              
             </div>
           </div>
         </div>
@@ -1985,7 +1983,7 @@ const MarketingFunnelChart: React.FC = () => {
                       <span className="text-purple-100 font-medium">{stage.stage}</span>
                     </div>
                     <span className="text-purple-300 text-sm font-semibold">
-                      {formatCurrency(stage.value)}
+                      {stage.value.toLocaleString()}
                     </span>
                   </div>
                   {index > 0 && (
