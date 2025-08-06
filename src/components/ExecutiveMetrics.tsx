@@ -212,27 +212,7 @@ interface CustomerSuccessData {
 
 // Configuration-driven approach
 const metricSections: MetricSection[] = [
-  // 1. EXECUTIVE SUMMARY - Key Business KPIs (Always first)
-  {
-    id: 'executive-summary',
-    title: 'Executive Summary',
-    description: 'Critical business performance indicators at a glance',
-    icon: TargetIcon,
-    layout: 'grid',
-    gridCols: 4,
-    order: 1,
-    customerTypes: ['b2c', 'b2b'],
-    metrics: [
-      { label: 'Total Revenue', value: '₹8.7M', change: 18.3, trend: 'up', icon: DollarSignIcon },
-      { label: 'Total Spend', value: '₹2.4M', change: 12.5, trend: 'up', icon: DollarSignIcon },
-      { label: 'ROI', value: '3.6x', change: 5.2, trend: 'up', icon: TrendingUpIcon },
-      { label: 'Total Conversions', value: '12.4K', change: 22.1, trend: 'up', icon: TargetIcon },
-      { label: 'CPC', value: '₹2.69', change: -3.2, trend: 'down', icon: DollarSignIcon },
-      { label: 'CPM', value: '₹53.10', change: -1.8, trend: 'down', icon: DollarSignIcon },
-      { label: 'CPConv', value: '₹193.55', change: -7.8, trend: 'down', icon: DollarSignIcon },
-      { label: 'Total Customers', value: '45.2K', change: 15.7, trend: 'up', icon: UsersIcon }
-    ]
-  },
+  
 
   // 2. REVENUE & GROWTH PERFORMANCE (Executive Priority)
   {
