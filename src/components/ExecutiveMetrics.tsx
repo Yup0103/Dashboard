@@ -865,6 +865,16 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
   const [selectedPriority, setSelectedPriority] = useState('all');
   const [isPerformanceTrendsCollapsed, setIsPerformanceTrendsCollapsed] = useState(false);
 
+  // Handle timeframe change
+  const handleTimeframeChange = (timeframe: string) => {
+    setSelectedTimeframe(timeframe);
+  };
+
+  // Toggle Performance Trends section
+  const togglePerformanceTrends = () => {
+    setIsPerformanceTrendsCollapsed(!isPerformanceTrendsCollapsed);
+  };
+
   const toggleSection = (sectionId: string) => {
     setCollapsedSections(prev => ({
       ...prev,
@@ -1157,7 +1167,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                     <div className="flex items-center gap-3">
                       <div className="flex gap-2">
                         <button 
-                          onClick={() => setSelectedTimeframe('daily')}
+                          onClick={() => handleTimeframeChange('daily')}
                           className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-200 ${
                             selectedTimeframe === 'daily' 
                               ? 'bg-gradient-to-r from-[#6D28D9] to-[#4F46E5] text-white' 
@@ -1167,7 +1177,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                           Daily
                         </button>
                         <button 
-                          onClick={() => setSelectedTimeframe('weekly')}
+                          onClick={() => handleTimeframeChange('weekly')}
                           className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-200 ${
                             selectedTimeframe === 'weekly' 
                               ? 'bg-gradient-to-r from-[#6D28D9] to-[#4F46E5] text-white' 
@@ -1177,7 +1187,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                           Weekly
                         </button>
                         <button 
-                          onClick={() => setSelectedTimeframe('monthly')}
+                          onClick={() => handleTimeframeChange('monthly')}
                           className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-200 ${
                             selectedTimeframe === 'monthly' 
                               ? 'bg-gradient-to-r from-[#6D28D9] to-[#4F46E5] text-white' 
@@ -1188,7 +1198,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                         </button>
                       </div>
                       <button
-                        onClick={() => setIsPerformanceTrendsCollapsed(!isPerformanceTrendsCollapsed)}
+                        onClick={togglePerformanceTrends}
                         className="p-2 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 hover:text-white transition-all duration-200"
                       >
                         {isPerformanceTrendsCollapsed ? (
@@ -1208,15 +1218,26 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                   <div className="p-6">
                     <div className="h-[400px]">
                       <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={[
-                          { date: '1/1/2024', impressions: 18000, clicks: 950, conversions: 35, ctr: 5.3, spend: 2400, cpc: 2.53 },
-                          { date: '1/2/2024', impressions: 17500, clicks: 890, conversions: 28, ctr: 5.1, spend: 2250, cpc: 2.53 },
-                          { date: '1/3/2024', impressions: 19200, clicks: 1150, conversions: 42, ctr: 6.0, spend: 2900, cpc: 2.52 },
-                          { date: '1/4/2024', impressions: 18800, clicks: 1050, conversions: 38, ctr: 5.6, spend: 2650, cpc: 2.52 },
-                          { date: '1/5/2024', impressions: 20500, clicks: 1280, conversions: 48, ctr: 6.2, spend: 3200, cpc: 2.50 },
-                          { date: '1/6/2024', impressions: 19800, clicks: 1180, conversions: 45, ctr: 6.0, spend: 2950, cpc: 2.50 },
-                          { date: '1/7/2024', impressions: 21000, clicks: 1350, conversions: 52, ctr: 6.4, spend: 3400, cpc: 2.52 }
-                        ]}>
+                        <LineChart data={
+                          selectedTimeframe === 'daily' ? [
+                            { date: '1/1/2024', impressions: 18000, clicks: 950, conversions: 35, ctr: 5.3, spend: 2400, cpc: 2.53 },
+                            { date: '1/2/2024', impressions: 17500, clicks: 890, conversions: 28, ctr: 5.1, spend: 2250, cpc: 2.53 },
+                            { date: '1/3/2024', impressions: 19200, clicks: 1150, conversions: 42, ctr: 6.0, spend: 2900, cpc: 2.52 },
+                            { date: '1/4/2024', impressions: 18800, clicks: 1050, conversions: 38, ctr: 5.6, spend: 2650, cpc: 2.52 },
+                            { date: '1/5/2024', impressions: 20500, clicks: 1280, conversions: 48, ctr: 6.2, spend: 3200, cpc: 2.50 },
+                            { date: '1/6/2024', impressions: 19800, clicks: 1180, conversions: 45, ctr: 6.0, spend: 2950, cpc: 2.50 },
+                            { date: '1/7/2024', impressions: 21000, clicks: 1350, conversions: 52, ctr: 6.4, spend: 3400, cpc: 2.52 }
+                          ] : selectedTimeframe === 'weekly' ? [
+                            { date: 'Week 1', impressions: 126000, clicks: 6370, conversions: 238, ctr: 5.0, spend: 16800, cpc: 2.64 },
+                            { date: 'Week 2', impressions: 132000, clicks: 6860, conversions: 254, ctr: 5.2, spend: 18200, cpc: 2.65 },
+                            { date: 'Week 3', impressions: 128000, clicks: 6720, conversions: 248, ctr: 5.3, spend: 17600, cpc: 2.62 },
+                            { date: 'Week 4', impressions: 135000, clicks: 7020, conversions: 265, ctr: 5.2, spend: 18900, cpc: 2.69 }
+                          ] : [
+                            { date: 'Jan', impressions: 521000, clicks: 26970, conversions: 1005, ctr: 5.2, spend: 71500, cpc: 2.65 },
+                            { date: 'Feb', impressions: 548000, clicks: 28496, conversions: 1098, ctr: 5.2, spend: 75600, cpc: 2.65 },
+                            { date: 'Mar', impressions: 562000, clicks: 29224, conversions: 1124, ctr: 5.2, spend: 77800, cpc: 2.66 }
+                          ]
+                        }>
                           <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
                           <XAxis 
                             dataKey="date" 
