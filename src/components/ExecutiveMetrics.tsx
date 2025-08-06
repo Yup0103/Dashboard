@@ -848,12 +848,7 @@ const sampleData = {
     { name: 'Summer Sale', performance: 'excellent', spend: 450, roi: 4.2, creativeType: 'Video' },
     { name: 'Brand Awareness', performance: 'good', spend: 320, roi: 3.1, creativeType: 'Image' },
     { name: 'Retargeting', performance: 'excellent', spend: 280, roi: 5.8, creativeType: 'Dynamic' }
-  ],
-  customerSuccess: {
-    healthScore: 87,
-    nps: 72,
-    csat: 4.6
-  }
+  ]
 };
 
 const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
@@ -1269,13 +1264,6 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
             </div>
 
           {/* Enhanced Visualizations */}
-            <div className="flex items-center gap-3">
-              <div className="analytical-badge px-3 py-1 rounded-lg">
-                <span className="text-purple-400 font-semibold text-sm">Advanced Analytics</span>
-              </div>
-              <h2 className="text-2xl font-bold text-purple-100">Strategic Visualizations</h2>
-            </div>
-
             <div className="space-y-8">
               {/* Marketing Funnel Chart */}
               <Card className="glass-effect metric-card-hover">
@@ -1320,34 +1308,6 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 </CardContent>
               </Card>
 
-              {/* Customer Success */}
-              <Card className="glass-effect metric-card-hover">
-                <CardHeader>
-                  <CardTitle className="text-purple-100 flex items-center gap-2">
-                    <AwardIcon className="w-6 h-6 text-purple-400" />
-                    Customer Success
-                  </CardTitle>
-                  <CardDescription className="text-purple-300">
-                    Customer satisfaction metrics
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-3 gap-6">
-                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                      <p className="text-sm text-purple-300 mb-1">Health Score</p>
-                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.healthScore}/100</p>
-                    </div>
-                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                      <p className="text-sm text-purple-300 mb-1">NPS</p>
-                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.nps}</p>
-                    </div>
-                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                      <p className="text-sm text-purple-300 mb-1">CSAT</p>
-                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.csat}/5</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
 
@@ -1394,34 +1354,6 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               {/* Unified Audience Insights */}
               <UnifiedAudienceInsights />
 
-              {/* Customer Success */}
-              <Card className="glass-effect metric-card-hover">
-                <CardHeader>
-                  <CardTitle className="text-purple-100 flex items-center gap-2">
-                    <AwardIcon className="w-6 h-6 text-purple-400" />
-                    Customer Success
-                  </CardTitle>
-                  <CardDescription className="text-purple-300">
-                    Customer satisfaction metrics
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-3 gap-6">
-                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                      <p className="text-sm text-purple-300 mb-1">Health Score</p>
-                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.healthScore}/100</p>
-                    </div>
-                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                      <p className="text-sm text-purple-300 mb-1">NPS</p>
-                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.nps}</p>
-                    </div>
-                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                      <p className="text-sm text-purple-300 mb-1">CSAT</p>
-                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.csat}/5</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>
@@ -1627,10 +1559,6 @@ const UnifiedAudienceInsights: React.FC = () => {
   );
 };
 
-export default ExecutiveMetrics;
-
-// Additional specialized components for B2C views
-
 // Overall Summary Cards Component
 const OverallSummaryCards: React.FC = () => {
   return (
@@ -1640,7 +1568,7 @@ const OverallSummaryCards: React.FC = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-purple-300/80">Total Revenue</p>
-              <p className="text-2xl font-bold text-purple-200">₹8.7M</p>
+              <p className="text-2xl font-bold text-purple-200">₹8M</p>
               <div className="flex items-center gap-1 mt-2">
                 <TrendingUpIcon className="w-4 h-4 text-emerald-400" />
                 <span className="text-emerald-400 text-sm font-medium">+18.3%</span>
@@ -3034,3 +2962,5 @@ const ExecutiveSummary: React.FC = () => {
     </div>
   );
 };
+
+export default ExecutiveMetrics;
