@@ -72,10 +72,10 @@ const MetricCard: React.FC<{ metric: B2BMetric; title: string }> = ({ metric, ti
   return (
     <Card className="bg-[#1A0B2E]/80 border-[#6D28D9]/20 hover:border-[#6D28D9]/40 transition-all duration-200">
       <CardContent className="p-4">
-        <div className="flex items-start justify-between">
-          <div className="space-y-1 flex-1">
+        <div className="flex items-start justify-between gap-3">
+          <div className="space-y-1 flex-1 min-w-0">
             <span className="text-xs text-purple-300/80 font-medium">{title}</span>
-            <div className="flex items-baseline gap-2">
+            <div className="flex items-baseline gap-2 flex-wrap">
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-fuchsia-300">
                 {formatValue(metric)}
               </span>
@@ -93,7 +93,7 @@ const MetricCard: React.FC<{ metric: B2BMetric; title: string }> = ({ metric, ti
               </div>
             </div>
           </div>
-          <div className={`flex-shrink-0 p-2 rounded-lg bg-gradient-to-br ${metric.color} bg-opacity-10`}>
+          <div className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br ${metric.color} bg-opacity-20`}>
             <Icon className="h-4 w-4 text-white" />
           </div>
         </div>
