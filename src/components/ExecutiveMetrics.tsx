@@ -1064,10 +1064,6 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
 
         {/* Main Content Area */}
         <div className="p-6 space-y-12">
-          {/* Executive Summary Section */}
-          <div className="space-y-8">
-            <ExecutiveSummary />
-          </div>
 
           {/* Executive Priority Section */}
           {(selectedPriority === 'all' || selectedPriority === 'executive') && (
