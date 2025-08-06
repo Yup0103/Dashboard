@@ -105,25 +105,7 @@ const MetricCard: React.FC<{ metric: B2BMetric; title: string }> = ({ metric, ti
 const B2BSummaryCards: React.FC<B2BSummaryCardsProps> = ({ metrics, dateRange }) => {
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400">
-            B2B Dashboard
-          </h2>
-          <p className="text-purple-300/80 text-sm mt-1">
-            Marketing and Sales Performance Overview
-            {dateRange && (
-              <span className="ml-2 text-purple-400">
-                {dateRange.from.toLocaleDateString()} - {dateRange.to.toLocaleDateString()}
-              </span>
-            )}
-          </p>
-        </div>
-        <Badge variant="outline" className="border-purple-500/30 text-purple-300">
-          B2B Focus
-        </Badge>
-      </div>
+      
 
       {/* Marketing Metrics */}
       <div className="space-y-4">
