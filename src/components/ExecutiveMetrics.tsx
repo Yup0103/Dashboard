@@ -863,6 +863,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState('executive');
   const [selectedPriority, setSelectedPriority] = useState('all');
+  const [isPerformanceTrendsCollapsed, setIsPerformanceTrendsCollapsed] = useState(false);
 
   const toggleSection = (sectionId: string) => {
     setCollapsedSections(prev => ({
@@ -1137,8 +1138,116 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
             </div>
           )}
 
-          {/* Enhanced Visualizations */}
+          {/* Performance Trends Section */}
           <div className="space-y-8">
+            <div className="relative">
+              <div className="bg-gradient-to-br from-[#1A0B2E]/90 to-[#2D1B69]/80 backdrop-blur-md rounded-xl border border-purple-500/20">
+                {/* Header */}
+                <div className="p-6 border-b border-purple-500/20">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-purple-500/20 rounded-lg group-hover:bg-purple-500/30 transition-colors duration-300">
+                        <ActivityIcon className="w-6 h-6 text-purple-300" />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold text-white tracking-tight">Performance Trends</h2>
+                        <p className="text-sm text-purple-300/80 mt-1">Track your key metrics over time</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={() => setSelectedTimeframe('daily')}
+                          className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-200 ${
+                            selectedTimeframe === 'daily' 
+                              ? 'bg-gradient-to-r from-[#6D28D9] to-[#4F46E5] text-white' 
+                              : 'bg-[#2D1B69]/30 text-purple-300 hover:bg-[#2D1B69]/50'
+                          }`}
+                        >
+                          Daily
+                        </button>
+                        <button 
+                          onClick={() => setSelectedTimeframe('weekly')}
+                          className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-200 ${
+                            selectedTimeframe === 'weekly' 
+                              ? 'bg-gradient-to-r from-[#6D28D9] to-[#4F46E5] text-white' 
+                              : 'bg-[#2D1B69]/30 text-purple-300 hover:bg-[#2D1B69]/50'
+                          }`}
+                        >
+                          Weekly
+                        </button>
+                        <button 
+                          onClick={() => setSelectedTimeframe('monthly')}
+                          className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-200 ${
+                            selectedTimeframe === 'monthly' 
+                              ? 'bg-gradient-to-r from-[#6D28D9] to-[#4F46E5] text-white' 
+                              : 'bg-[#2D1B69]/30 text-purple-300 hover:bg-[#2D1B69]/50'
+                          }`}
+                        >
+                          Monthly
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => setIsPerformanceTrendsCollapsed(!isPerformanceTrendsCollapsed)}
+                        className="p-2 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 hover:text-white transition-all duration-200"
+                      >
+                        {isPerformanceTrendsCollapsed ? (
+                          <ArrowDownIcon className="w-5 h-5" />
+                        ) : (
+                          <ArrowUpIcon className="w-5 h-5" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Collapsible Content */}
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isPerformanceTrendsCollapsed ? 'max-h-0 opacity-0' : 'max-h-[500px] opacity-100'
+                }`}>
+                  <div className="p-6">
+                    <div className="h-[400px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={[
+                          { date: '1/1/2024', impressions: 18000, clicks: 950, conversions: 35, ctr: 5.3, spend: 2400, cpc: 2.53 },
+                          { date: '1/2/2024', impressions: 17500, clicks: 890, conversions: 28, ctr: 5.1, spend: 2250, cpc: 2.53 },
+                          { date: '1/3/2024', impressions: 19200, clicks: 1150, conversions: 42, ctr: 6.0, spend: 2900, cpc: 2.52 },
+                          { date: '1/4/2024', impressions: 18800, clicks: 1050, conversions: 38, ctr: 5.6, spend: 2650, cpc: 2.52 },
+                          { date: '1/5/2024', impressions: 20500, clicks: 1280, conversions: 48, ctr: 6.2, spend: 3200, cpc: 2.50 },
+                          { date: '1/6/2024', impressions: 19800, clicks: 1180, conversions: 45, ctr: 6.0, spend: 2950, cpc: 2.50 },
+                          { date: '1/7/2024', impressions: 21000, clicks: 1350, conversions: 52, ctr: 6.4, spend: 3400, cpc: 2.52 }
+                        ]}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
+                          <XAxis 
+                            dataKey="date" 
+                            stroke="#E9D5FF" 
+                            tick={{ fill: '#E9D5FF', fontSize: 12 }}
+                          />
+                          <YAxis stroke="#E9D5FF" />
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'rgba(45, 27, 105, 0.95)',
+                              border: '1px solid rgba(109, 40, 217, 0.2)',
+                              borderRadius: '12px',
+                              color: '#E9D5FF'
+                            }}
+                          />
+                          <Legend />
+                          <Line type="monotone" dataKey="impressions" stroke="#8B5CF6" strokeWidth={2} name="Impressions" />
+                          <Line type="monotone" dataKey="clicks" stroke="#10B981" strokeWidth={2} name="Clicks" />
+                          <Line type="monotone" dataKey="conversions" stroke="#F59E0B" strokeWidth={2} name="Conversions" />
+                          <Line type="monotone" dataKey="ctr" stroke="#EF4444" strokeWidth={2} name="CTR" />
+                          <Line type="monotone" dataKey="spend" stroke="#06B6D4" strokeWidth={2} name="Spend" />
+                          <Line type="monotone" dataKey="cpc" stroke="#8B5CF6" strokeWidth={2} name="CPC" />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {/* Enhanced Visualizations */}
             <div className="flex items-center gap-3">
               <div className="analytical-badge px-3 py-1 rounded-lg">
                 <span className="text-purple-400 font-semibold text-sm">Advanced Analytics</span>
