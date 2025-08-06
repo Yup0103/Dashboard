@@ -2362,12 +2362,12 @@ const OverallSummaryCards: React.FC = () => {
 // Enhanced Platform Performance Table
 const EnhancedPlatformTable: React.FC = () => {
   const platformData = [
-    { platform: 'Facebook', spend: '₹1.2M', spendPercent: '50%', roi: '3.8x', cpconv: '₹45.20', status: 'excellent', color: '#1877F2' },
-    { platform: 'Google Ads', spend: '₹720K', spendPercent: '30%', roi: '4.2x', cpconv: '₹38.50', status: 'excellent', color: '#4285F4' },
-    { platform: 'TikTok', spend: '₹360K', spendPercent: '15%', roi: '2.9x', cpconv: '₹52.80', status: 'good', color: '#000000' },
-    { platform: 'Instagram', spend: '₹180K', spendPercent: '7.5%', roi: '3.2x', cpconv: '₹41.20', status: 'good', color: '#E4405F' },
-    { platform: 'YouTube', spend: '₹120K', spendPercent: '5%', roi: '2.5x', cpconv: '₹67.40', status: 'average', color: '#FF0000' },
-    { platform: 'Other', spend: '₹120K', spendPercent: '2.5%', roi: '2.1x', cpconv: '₹89.50', status: 'poor', color: '#6B7280' }
+    { platform: 'Facebook', spend: 1.2, spendPercent: 50, roi: '3.8x', cpconv: '₹45.20', status: 'excellent', color: '#1877F2' },
+    { platform: 'Google Ads', spend: 0.72, spendPercent: 30, roi: '4.2x', cpconv: '₹38.50', status: 'excellent', color: '#4285F4' },
+    { platform: 'TikTok', spend: 0.36, spendPercent: 15, roi: '2.9x', cpconv: '₹52.80', status: 'good', color: '#000000' },
+    { platform: 'Instagram', spend: 0.18, spendPercent: 7.5, roi: '3.2x', cpconv: '₹41.20', status: 'good', color: '#E4405F' },
+    { platform: 'YouTube', spend: 0.12, spendPercent: 5, roi: '2.5x', cpconv: '₹67.40', status: 'average', color: '#FF0000' },
+    { platform: 'Other', spend: 0.12, spendPercent: 2.5, roi: '2.1x', cpconv: '₹89.50', status: 'poor', color: '#6B7280' }
   ];
 
   return (
@@ -2388,8 +2388,8 @@ const EnhancedPlatformTable: React.FC = () => {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={platformData} layout="horizontal">
                 <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis type="number" stroke="#E9D5FF" />
-                <YAxis dataKey="platform" type="category" stroke="#E9D5FF" width={80} />
+                <XAxis type="number" stroke="#E9D5FF" tick={{ fill: '#E9D5FF', fontSize: 12 }} />
+                <YAxis dataKey="platform" type="category" stroke="#E9D5FF" width={80} tick={{ fill: '#E9D5FF', fontSize: 12 }} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(45, 27, 105, 0.95)',
@@ -2397,7 +2397,10 @@ const EnhancedPlatformTable: React.FC = () => {
                     borderRadius: '12px',
                     color: '#E9D5FF'
                   }}
-                  formatter={(value, name) => [value, 'Spend']}
+                  formatter={(value: any, name: any) => [
+                    `${value}%`,
+                    'Spend Share'
+                  ]}
                 />
                 <Bar dataKey="spendPercent" fill="#8B5CF6" />
               </BarChart>
@@ -2425,10 +2428,10 @@ const EnhancedPlatformTable: React.FC = () => {
                       {row.platform}
                     </div>
                   </TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.spend)}</TableCell>
-                  <TableCell className="text-purple-200">{row.spendPercent}</TableCell>
+                  <TableCell className="text-purple-200">₹{row.spend}M</TableCell>
+                  <TableCell className="text-purple-200">{row.spendPercent}%</TableCell>
                   <TableCell className="text-purple-200">{row.roi}</TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.cpconv)}</TableCell>
+                  <TableCell className="text-purple-200">{row.cpconv}</TableCell>
                   <TableCell>
                     <Badge className={getPerformanceColor(row.status)}>
                       {row.status}
