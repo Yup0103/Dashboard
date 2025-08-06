@@ -1242,11 +1242,13 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {[
-                    { campaign: 'Summer Sale', issue: 'High CPA', current: 45, target: 35, impact: 'high' },
-                    { campaign: 'New Product', issue: 'Low CTR', current: 1.2, target: 2.5, impact: 'medium' },
-                    { campaign: 'B2B Leads', issue: 'Budget Burn', current: 85, target: 70, impact: 'high' }
+                    { campaign: 'Summer Sale', issue: 'High CPA', current: 45, target: 35, impact: 'high', trend: 'up' },
+                    { campaign: 'New Product', issue: 'Low CTR', current: 1.2, target: 2.5, impact: 'medium', trend: 'down' },
+                    { campaign: 'B2B Leads', issue: 'Budget Burn', current: 85, target: 70, impact: 'high', trend: 'up' },
+                    { campaign: 'Holiday Special', issue: 'High CPC', current: 12.5, target: 8.0, impact: 'medium', trend: 'up' },
+                    { campaign: 'Brand Awareness', issue: 'Low Conversion Rate', current: 0.8, target: 1.5, impact: 'medium', trend: 'stable' }
                   ].map((alert, index) => (
                     <div key={index} className="p-3 bg-[#2D1B69]/30 rounded-lg border-l-4 border-amber-400">
                       <div className="flex items-center justify-between mb-2">
@@ -1256,13 +1258,27 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
                           alert.impact === 'medium' ? 'bg-amber-500/20 text-amber-400' :
                           'bg-green-500/20 text-green-400'
                         }`}>
-                          {alert.impact}
+                          {alert.impact} impact
                         </Badge>
                       </div>
-                      <p className="text-xs text-purple-300/80 mb-1">{alert.issue}</p>
-                      <div className="flex items-center gap-2 text-xs">
-                        <span className="text-purple-300/60">Current: {alert.current}</span>
-                        <span className="text-purple-300/60">Target: {alert.target}</span>
+                      <p className="text-xs text-purple-300/80 mb-2">{alert.issue}</p>
+                      <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-2">
+                          <span className="text-purple-300/80">Current: {alert.current}</span>
+                          <span className="text-purple-300/80">Target: {alert.target}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          {alert.trend === 'up' ? (
+                            <TrendingUpIcon className="h-4 w-4 text-rose-400" />
+                          ) : alert.trend === 'down' ? (
+                            <TrendingDownIcon className="h-4 w-4 text-emerald-400" />
+                          ) : (
+                            <div className="h-4 w-4 text-purple-400">—</div>
+                          )}
+                          <span className={alert.trend === 'up' ? 'text-rose-400' : alert.trend === 'down' ? 'text-emerald-400' : 'text-purple-400'}>
+                            {alert.trend}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   ))}
