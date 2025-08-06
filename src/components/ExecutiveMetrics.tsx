@@ -1320,73 +1320,30 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
                 </CardContent>
               </Card>
 
-              {/* Customer Success & Campaigns */}
+              {/* Customer Success */}
               <Card className="glass-effect metric-card-hover">
                 <CardHeader>
                   <CardTitle className="text-purple-100 flex items-center gap-2">
                     <AwardIcon className="w-6 h-6 text-purple-400" />
-                    Customer Success & Top Campaigns
+                    Customer Success
                   </CardTitle>
                   <CardDescription className="text-purple-300">
-                    Customer satisfaction metrics and top performing campaigns
+                    Customer satisfaction metrics
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Customer Success Metrics */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-purple-200 mb-4 flex items-center gap-2">
-                        <AwardIcon className="w-5 h-5 text-purple-400" />
-                        Customer Success
-                      </h4>
-                      <div className="space-y-4">
-                        <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                          <p className="text-sm text-purple-300 mb-1">Health Score</p>
-                          <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.healthScore}/100</p>
-                        </div>
-                        <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                          <p className="text-sm text-purple-300 mb-1">NPS</p>
-                          <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.nps}</p>
-                        </div>
-                        <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                          <p className="text-sm text-purple-300 mb-1">CSAT</p>
-                          <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.csat}/5</p>
-                        </div>
-                      </div>
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
+                      <p className="text-sm text-purple-300 mb-1">Health Score</p>
+                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.healthScore}/100</p>
                     </div>
-
-                    {/* Top Campaigns */}
-                    <div className="md:col-span-2">
-                      <h4 className="text-lg font-semibold text-purple-200 mb-4 flex items-center gap-2">
-                        <TargetIcon className="w-5 h-5 text-purple-400" />
-                        Top Campaigns
-                      </h4>
-                      <div className="space-y-4">
-                        {sampleData.topCampaigns.map((campaign, index) => (
-                          <div key={index} className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                            <div className="flex items-center justify-between mb-2">
-                              <p className="text-sm font-medium text-purple-200">{campaign.name}</p>
-                              <Badge className={getPerformanceColor(campaign.performance)}>
-                                {campaign.performance}
-                              </Badge>
-                            </div>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs">
-                                <span className="text-purple-400">Spend</span>
-                                <span className="text-purple-200">{formatCurrency(campaign.spend)}</span>
-                              </div>
-                              <div className="flex justify-between text-xs">
-                                <span className="text-purple-400">ROI</span>
-                                <span className="text-purple-200">{campaign.roi}x</span>
-                              </div>
-                              <div className="flex justify-between text-xs">
-                                <span className="text-purple-400">Type</span>
-                                <span className="text-purple-200">{campaign.creativeType}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
+                      <p className="text-sm text-purple-300 mb-1">NPS</p>
+                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.nps}</p>
+                    </div>
+                    <div className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
+                      <p className="text-sm text-purple-300 mb-1">CSAT</p>
+                      <p className="text-xl font-bold text-purple-200">{sampleData.customerSuccess.csat}/5</p>
                     </div>
                   </div>
                 </CardContent>
