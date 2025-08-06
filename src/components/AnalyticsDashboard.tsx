@@ -1226,10 +1226,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
 
           
 
-          {/* Creative Asset Analysis (Both B2B/B2C) */}
+          {/* Budget Optimization Alerts & Risk & Alert Metrics */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            
-
             {/* Budget Optimization / Alerting (Both B2B/B2C) */}
             <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
               <CardHeader>
@@ -1269,59 +1267,61 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
                 </div>
               </CardContent>
             </Card>
+
+            {/* Risk & Alert Metrics (Both B2B/B2C) */}
+            <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
+              <CardHeader>
+                <CardTitle className="text-purple-100 flex items-center gap-2">
+                  <AlertTriangleIcon className="h-5 w-5 text-rose-400" />
+                  Risk & Alert Metrics
+                </CardTitle>
+                <CardDescription className="text-purple-300">
+                  Early warning system for campaign performance
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { metric: 'CAC Trend', current: 125, previous: 110, trend: 'up', risk: 'medium' },
+                    { metric: 'ROAS Decline', current: 2.8, previous: 3.2, trend: 'down', risk: 'high' },
+                    { metric: 'Budget Burn Rate', current: 85, previous: 70, trend: 'up', risk: 'high' },
+                    { metric: 'Creative Fatigue', current: 65, previous: 75, trend: 'down', risk: 'medium' }
+                  ].map((risk, index) => (
+                    <div key={index} className="p-3 bg-[#2D1B69]/30 rounded-lg border-l-4 border-rose-400">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="text-sm font-medium text-purple-200">{risk.metric}</h4>
+                        <Badge className={`${
+                          risk.risk === 'high' ? 'bg-rose-500/20 text-rose-400' :
+                          risk.risk === 'medium' ? 'bg-amber-500/20 text-amber-400' :
+                          'bg-green-500/20 text-green-400'
+                        }`}>
+                          {risk.risk} risk
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-4 text-xs">
+                        <span className="text-purple-300/60">Current: {risk.current}</span>
+                        <span className="text-purple-300/60">Previous: {risk.previous}</span>
+                        <div className="flex items-center gap-1">
+                          {risk.trend === 'up' ? (
+                            <TrendingUpIcon className="h-3 w-3 text-rose-400" />
+                          ) : (
+                            <TrendingDownIcon className="h-3 w-3 text-emerald-400" />
+                          )}
+                          <span className={risk.trend === 'up' ? 'text-rose-400' : 'text-emerald-400'}>
+                            {risk.trend}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           
 
-          {/* Risk & Alert Metrics (Both B2B/B2C) */}
-          <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-            <CardHeader>
-              <CardTitle className="text-purple-100 flex items-center gap-2">
-                <AlertTriangleIcon className="h-5 w-5 text-rose-400" />
-                Risk & Alert Metrics
-              </CardTitle>
-              <CardDescription className="text-purple-300">
-                Early warning system for campaign performance
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {[
-                  { metric: 'CAC Trend', current: 125, previous: 110, trend: 'up', risk: 'medium' },
-                  { metric: 'ROAS Decline', current: 2.8, previous: 3.2, trend: 'down', risk: 'high' },
-                  { metric: 'Budget Burn Rate', current: 85, previous: 70, trend: 'up', risk: 'high' },
-                  { metric: 'Creative Fatigue', current: 65, previous: 75, trend: 'down', risk: 'medium' }
-                ].map((risk, index) => (
-                  <div key={index} className="p-3 bg-[#2D1B69]/30 rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-sm font-medium text-purple-200">{risk.metric}</h4>
-                      <Badge className={`${
-                        risk.risk === 'high' ? 'bg-rose-500/20 text-rose-400' :
-                        risk.risk === 'medium' ? 'bg-amber-500/20 text-amber-400' :
-                        'bg-green-500/20 text-green-400'
-                      }`}>
-                        {risk.risk} risk
-                      </Badge>
-                    </div>
-                    <div className="flex items-center gap-4 text-sm">
-                      <span className="text-purple-300/80">Current: {risk.current}</span>
-                      <span className="text-purple-300/80">Previous: {risk.previous}</span>
-                      <div className="flex items-center gap-1">
-                        {risk.trend === 'up' ? (
-                          <TrendingUpIcon className="h-4 w-4 text-rose-400" />
-                        ) : (
-                          <TrendingDownIcon className="h-4 w-4 text-emerald-400" />
-                        )}
-                        <span className={risk.trend === 'up' ? 'text-rose-400' : 'text-emerald-400'}>
-                          {risk.trend}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          
 
           {/* SKU/Product-Level Performance (B2C) */}
           {viewMode === 'b2c' && (
