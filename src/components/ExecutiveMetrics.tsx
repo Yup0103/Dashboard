@@ -1413,7 +1413,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               {/* Top Campaigns Table */}
               <TopCampaignsTable />
 
-              {/* Trend Analysis Chart */}
+              {/* Trend Chart */}
               <TrendChart />
 
               {/* Customer Acquisition vs CLV Chart */}
@@ -2018,7 +2018,7 @@ const MarketingFunnelChart: React.FC = () => {
 // Detailed Attribution Component
 const DetailedAttribution: React.FC = () => {
   const [selectedChannel, setSelectedChannel] = useState<string>('all');
-  
+
   const allAttributionData = [
     { channel: 'Facebook Ads', firstClick: 35, lastClick: 45, linear: 15, dataDriven: 5, totalContribution: 100 },
     { channel: 'Google Ads', firstClick: 25, lastClick: 35, linear: 20, dataDriven: 8, totalContribution: 88 },
@@ -2649,7 +2649,7 @@ const EnhancedAudienceInsights: React.FC = () => {
                 )}
               </div>
             </div>
-            
+
             {[...demographicsData, ...ageGroupData, ...deviceData].length > 0 ? (
               <Table>
                 <TableHeader>
@@ -2713,7 +2713,6 @@ const EnhancedAudienceInsights: React.FC = () => {
     </Card>
   );
 };
-
 
 // Executive Summary Component
 const ExecutiveSummary: React.FC = () => {
@@ -2840,7 +2839,7 @@ const ExecutiveSummary: React.FC = () => {
                 </div>
                 <span className="text-xs text-purple-400/70">vs previous period</span>
               </div>
-              
+
               {/* Subtle glow effect */}
               <div className={`absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
                 isPositive ? 'bg-emerald-500' : isNegative ? 'bg-red-500' : 'bg-purple-500'
