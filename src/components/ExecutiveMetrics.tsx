@@ -2394,6 +2394,9 @@ const EnhancedForecastingView: React.FC = () => {
 
 // Enhanced Audience Insights Component
 const EnhancedAudienceInsights: React.FC = () => {
+  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const [selectedSegment, setSelectedSegment] = useState<string>('demographics');
+
   const demographicsData = [
     { segment: 'Female', conversion: 2.8, roi: 3.2, cac: 45, percentage: 58 },
     { segment: 'Male', conversion: 2.1, roi: 2.8, cac: 52, percentage: 42 }
@@ -2412,26 +2415,113 @@ const EnhancedAudienceInsights: React.FC = () => {
     { device: 'Tablet', conversion: 1.9, roi: 2.5, cac: 72, percentage: 4 }
   ];
 
+  const interestData = [
+    { interest: 'Tech Enthusiasts', conversion: 3.5, roi: 4.1, cac: 38, percentage: 22 },
+    { interest: 'Fashion Lovers', conversion: 2.9, roi: 3.4, cac: 42, percentage: 28 },
+    { interest: 'Sports Fans', conversion: 2.4, roi: 2.9, cac: 48, percentage: 18 },
+    { interest: 'Travel Seekers', conversion: 2.6, roi: 3.1, cac: 45, percentage: 15 },
+    { interest: 'Food Lovers', conversion: 2.2, roi: 2.7, cac: 52, percentage: 17 }
+  ];
+
+  const locationData = [
+    { location: 'North India', conversion: 2.9, roi: 3.3, cac: 42, percentage: 35 },
+    { location: 'South India', conversion: 3.1, roi: 3.6, cac: 39, percentage: 30 },
+    { location: 'West India', conversion: 2.7, roi: 3.0, cac: 47, percentage: 25 },
+    { location: 'East India', conversion: 2.3, roi: 2.8, cac: 51, percentage: 10 }
+  ];
+
+  // Get current data based on selected segment
+  const getCurrentData = () => {
+    switch (selectedSegment) {
+      case 'demographics': return demographicsData;
+      case 'age': return ageGroupData;
+      case 'device': return deviceData;
+      case 'interests': return interestData;
+      case 'location': return locationData;
+      default: return demographicsData;
+    }
+  };
+
+  const currentData = getCurrentData();
+
+  // Filter data based on performance if filter is applied
+  const filteredData = selectedFilter === 'all' 
+    ? currentData 
+    : currentData.filter(item => {
+        if (selectedFilter === 'high-roi') return item.roi >= 3.5;
+        if (selectedFilter === 'low-cac') return item.cac <= 45;
+        if (selectedFilter === 'high-conversion') return item.conversion >= 2.8;
+        return true;
+      });
+
+  const getDataKey = () => {
+    if (selectedSegment === 'demographics') return 'segment';
+    if (selectedSegment === 'age') return 'age';
+    if (selectedSegment === 'device') return 'device';
+    if (selectedSegment === 'interests') return 'interest';
+    if (selectedSegment === 'location') return 'location';
+    return 'segment';
+  };
+
   return (
     <Card className="glass-effect metric-card-hover">
       <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <UsersIcon className="w-6 h-6 text-purple-400" />
-          Audience Insights
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Conversion, ROI, and CAC by gender, age group, device, and interest segments
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-purple-100 flex items-center gap-2">
+              <UsersIcon className="w-6 h-6 text-purple-400" />
+              Audience Insights
+            </CardTitle>
+            <CardDescription className="text-purple-300">
+              Conversion, ROI, and CAC by gender, age group, device, and interest segments
+            </CardDescription>
+          </div>
+          <div className="flex items-center gap-3">
+            {/* Segment Filter */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-purple-300">Segment:</span>
+              <Select value={selectedSegment} onValueChange={setSelectedSegment}>
+                <SelectTrigger className="w-[140px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-[#2D1B69] border-purple-500/20">
+                  <SelectItem value="demographics" className="text-purple-200 focus:bg-purple-500/20">Demographics</SelectItem>
+                  <SelectItem value="age" className="text-purple-200 focus:bg-purple-500/20">Age Groups</SelectItem>
+                  <SelectItem value="device" className="text-purple-200 focus:bg-purple-500/20">Devices</SelectItem>
+                  <SelectItem value="interests" className="text-purple-200 focus:bg-purple-500/20">Interests</SelectItem>
+                  <SelectItem value="location" className="text-purple-200 focus:bg-purple-500/20">Location</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Performance Filter */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-purple-300">Filter:</span>
+              <Select value={selectedFilter} onValueChange={setSelectedFilter}>
+                <SelectTrigger className="w-[140px] bg-[#2D1B69]/30 border-purple-500/20 text-purple-200">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-[#2D1B69] border-purple-500/20">
+                  <SelectItem value="all" className="text-purple-200 focus:bg-purple-500/20">All Segments</SelectItem>
+                  <SelectItem value="high-roi" className="text-purple-200 focus:bg-purple-500/20">High ROI (≥3.5x)</SelectItem>
+                  <SelectItem value="low-cac" className="text-purple-200 focus:bg-purple-500/20">Low CAC (≤₹45)</SelectItem>
+                  <SelectItem value="high-conversion" className="text-purple-200 focus:bg-purple-500/20">High Conversion (≥2.8%)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {/* Demographics Pie Chart */}
+          {/* Dynamic Charts based on selected segment */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Percentage Distribution Pie Chart */}
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={demographicsData}
+                    data={filteredData}
                     cx="50%"
                     cy="50%"
                     innerRadius={60}
@@ -2439,8 +2529,8 @@ const EnhancedAudienceInsights: React.FC = () => {
                     paddingAngle={5}
                     dataKey="percentage"
                   >
-                    {demographicsData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={['#8B5CF6', '#10B981'][index]} />
+                    {filteredData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={['#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#06B6D4'][index % 5]} />
                     ))}
                   </Pie>
                   <Tooltip 
@@ -2455,12 +2545,12 @@ const EnhancedAudienceInsights: React.FC = () => {
               </ResponsiveContainer>
             </div>
 
-            {/* Age Group Bar Chart */}
+            {/* Performance Bar Chart */}
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={ageGroupData}>
+                <BarChart data={filteredData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                  <XAxis dataKey="age" stroke="#E9D5FF" />
+                  <XAxis dataKey={getDataKey()} stroke="#E9D5FF" />
                   <YAxis stroke="#E9D5FF" />
                   <Tooltip 
                     contentStyle={{ 
@@ -2501,30 +2591,59 @@ const EnhancedAudienceInsights: React.FC = () => {
           </div>
 
           {/* Audience Details Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Segment</TableHead>
-                <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
-                <TableHead className="text-purple-200">ROI (x)</TableHead>
-                <TableHead className="text-purple-200">CAC (₹)</TableHead>
-                <TableHead className="text-purple-200">Percentage (%)</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {[...demographicsData, ...ageGroupData, ...deviceData].map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    {'segment' in row ? row.segment : 'age' in row ? row.age : row.device}
-                  </TableCell>
-                  <TableCell className="text-purple-200">{row.conversion}%</TableCell>
-                  <TableCell className="text-purple-200">{row.roi}x</TableCell>
-                  <TableCell className="text-purple-200">₹{row.cac}</TableCell>
-                  <TableCell className="text-purple-200">{row.percentage}%</TableCell>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold text-purple-100">
+                {selectedSegment.charAt(0).toUpperCase() + selectedSegment.slice(1)} Performance Data
+              </h3>
+              {selectedFilter !== 'all' && (
+                <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
+                  {selectedFilter === 'high-roi' && 'High ROI Filter Applied'}
+                  {selectedFilter === 'low-cac' && 'Low CAC Filter Applied'}
+                  {selectedFilter === 'high-conversion' && 'High Conversion Filter Applied'}
+                </Badge>
+              )}
+            </div>
+            
+            <Table>
+              <TableHeader>
+                <TableRow className="border-[#6D28D9]/20">
+                  <TableHead className="text-purple-200">
+                    {selectedSegment === 'demographics' && 'Gender'}
+                    {selectedSegment === 'age' && 'Age Group'}
+                    {selectedSegment === 'device' && 'Device'}
+                    {selectedSegment === 'interests' && 'Interest'}
+                    {selectedSegment === 'location' && 'Location'}
+                  </TableHead>
+                  <TableHead className="text-purple-200">Conversion Rate (%)</TableHead>
+                  <TableHead className="text-purple-200">ROI (x)</TableHead>
+                  <TableHead className="text-purple-200">CAC (₹)</TableHead>
+                  <TableHead className="text-purple-200">Percentage (%)</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {filteredData.length > 0 ? (
+                  filteredData.map((row, index) => (
+                    <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
+                      <TableCell className="text-purple-200 font-medium">
+                        {row[getDataKey() as keyof typeof row]}
+                      </TableCell>
+                      <TableCell className="text-purple-200">{row.conversion}%</TableCell>
+                      <TableCell className="text-purple-200">{row.roi}x</TableCell>
+                      <TableCell className="text-purple-200">₹{row.cac}</TableCell>
+                      <TableCell className="text-purple-200">{row.percentage}%</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center text-purple-300 py-6">
+                      No data matches the selected filter criteria
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
         </div>
       </CardContent>
     </Card>
