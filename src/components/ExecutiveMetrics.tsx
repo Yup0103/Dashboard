@@ -1437,8 +1437,7 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
               {/* Enhanced Audience Insights */}
               <EnhancedAudienceInsights />
 
-              {/* Enhanced Creative Performance */}
-              <EnhancedCreativePerformance />
+              
             </div>
           </div>
         </div>
