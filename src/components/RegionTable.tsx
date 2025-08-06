@@ -126,61 +126,67 @@ export function RegionTable({ data, title }: RegionTableProps) {
 
   return (
     <div className="w-full h-[400px] overflow-y-auto rounded-lg border border-[#4A148C] bg-[#2D1B4B]">
-      <Table>
-        <TableHeader className="sticky top-0 bg-[#2D1B4B] z-10">
-          <TableRow className="hover:bg-[#4A148C]/50 border-[#4A148C]">
-            <TableHead className="text-gray-300 w-[150px]">Region</TableHead>
-            <TableHead className="text-gray-300 text-right w-[100px]">Impressions</TableHead>
-            <TableHead className="text-gray-300 text-right w-[100px]">Clicks</TableHead>
-            <TableHead className="text-gray-300 text-right w-[100px]">Conversions</TableHead>
-            <TableHead className="text-gray-300 text-right w-[120px]">Distribution</TableHead>
-            <TableHead className="text-gray-300 text-right w-[80px]">Change</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sortedData.slice(0, 6).map((region, index) => (
-            <TableRow key={index} className="hover:bg-[#4A148C]/50 border-[#4A148C]">
-              <TableCell className="font-medium text-white py-2">
-                {region.region}
-              </TableCell>
-              <TableCell className="text-right text-white py-2">
-                {formatNumber(region.impressions)}
-              </TableCell>
-              <TableCell className="text-right text-white py-2">
-                {formatNumber(region.clicks)}
-              </TableCell>
-              <TableCell className="text-right text-white py-2">
-                {formatNumber(region.conversions)}
-              </TableCell>
-              <TableCell className="text-right text-white py-2">
-                <div className="flex items-center justify-end gap-2">
-                  <div className="w-16 bg-[#1A0A2B] h-2 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-[#4A148C]"
-                      style={{ width: `${region.distribution * 100}%` }}
-                    />
-                  </div>
-                  <span className="text-xs">{formatDistribution(region.distribution)}</span>
-                </div>
-              </TableCell>
-              <TableCell className="text-right py-2">
-                <span className={`inline-flex items-center gap-1 text-xs ${
-                  region.change >= 0 ? 'text-emerald-400' : 'text-rose-400'
-                }`}>
-                  {region.change >= 0 ? (
-                    <ArrowUpIcon className="w-3 h-3" />
-                  ) : (
-                    <ArrowDownIcon className="w-3 h-3" />
-                  )}
-                  {Math.abs(region.change)}%
-                </span>
-              </TableCell>
+        <Table>
+          <TableHeader className="sticky top-0 bg-[#2D1B4B] z-10">
+            <TableRow className="hover:bg-[#4A148C]/50 border-[#4A148C]">
+              <TableHead className="text-gray-300 w-[150px]">Region</TableHead>
+              <TableHead className="text-gray-300 text-right w-[100px]">Impressions</TableHead>
+              <TableHead className="text-gray-300 text-right w-[100px]">Clicks</TableHead>
+              <TableHead className="text-gray-300 text-right w-[100px]">Conversions</TableHead>
+              <TableHead className="text-gray-300 text-right w-[120px]">Distribution</TableHead>
+              <TableHead className="text-gray-300 text-right w-[80px]">Change</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {sortedData.slice(0, 6).map((region, index) => (
+              <TableRow key={index} className="hover:bg-[#4A148C]/50 border-[#4A148C]">
+                <TableCell className="font-medium text-white py-2">
+                  {region.region}
+                </TableCell>
+                <TableCell className="text-right text-white py-2">
+                  {formatNumber(region.impressions)}
+                </TableCell>
+                <TableCell className="text-right text-white py-2">
+                  {formatNumber(region.clicks)}
+                </TableCell>
+                <TableCell className="text-right text-white py-2">
+                  {formatNumber(region.conversions)}
+                </TableCell>
+                <TableCell className="text-right text-white py-2">
+                  <div className="flex items-center justify-end gap-2">
+                    <div className="w-16 bg-[#1A0A2B] h-2 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-[#4A148C]"
+                        style={{ width: `${region.distribution * 100}%` }}
+                      />
+                    </div>
+                    <span className="text-xs">{formatDistribution(region.distribution)}</span>
+                  </div>
+                </TableCell>
+                <TableCell className="text-right py-2">
+                  <span className={`inline-flex items-center gap-1 text-xs ${
+                    region.change >= 0 ? 'text-emerald-400' : 'text-rose-400'
+                  }`}>
+                    {region.change >= 0 ? (
+                      <ArrowUpIcon className="w-3 h-3" />
+                    ) : (
+                      <ArrowDownIcon className="w-3 h-3" />
+                    )}
+                    {Math.abs(region.change)}%
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
     </div>
   );
 }
 
 export { regionData };
+
+export function RegionTableWrapper() {
+  return (
+    <RegionTable data={regionData} title="Top Performing States" />
+  );
+}
