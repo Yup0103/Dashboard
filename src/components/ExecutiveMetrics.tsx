@@ -2476,108 +2476,14 @@ const EnhancedCreativePerformance: React.FC = () => {
   ];
 
   return (
-    <Card className="glass-effect metric-card-hover">
-      <CardHeader>
-        <CardTitle className="text-purple-100 flex items-center gap-2">
-          <ImageIcon className="w-6 h-6 text-purple-400" />
-          Creative Performance Analysis
-        </CardTitle>
-        <CardDescription className="text-purple-300">
-          Creative-level metrics: CTR, conversions, spend, ROI for different formats
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {/* Creative Performance Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {creativeData.map((creative, index) => (
-              <div key={index} className="bg-[#2D1B69]/30 rounded-lg p-4 border border-purple-500/20">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-4 h-4 rounded-full" style={{ backgroundColor: creative.color }}></div>
-                  <span className="text-sm text-purple-300 font-medium">{creative.type}</span>
-                </div>
-                <div className="space-y-2">
-                  <div>
-                    <p className="text-xs text-purple-400">CTR</p>
-                    <p className="text-lg font-bold text-purple-200">{creative.ctr}%</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-purple-400">ROI</p>
-                    <p className="text-lg font-bold text-purple-200">{creative.roi}x</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-purple-400">Spend</p>
-                    <p className="text-sm font-medium text-purple-200">₹{creative.spend}K</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+    
+     
+        
+    
+        
 
-          {/* Creative Performance Chart */}
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={creativeData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#6D28D9" opacity={0.2} />
-                <XAxis dataKey="type" stroke="#E9D5FF" />
-                <YAxis yAxisId="left" stroke="#E9D5FF" />
-                <YAxis yAxisId="right" orientation="right" stroke="#E9D5FF" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(45, 27, 105, 0.95)',
-                    border: '1px solid rgba(109, 40, 217, 0.2)',
-                    borderRadius: '12px',
-                    color: '#E9D5FF'
-                  }}
-                />
-                <Legend />
-                <Bar yAxisId="left" dataKey="ctr" fill="#8B5CF6" name="CTR (%)" />
-                <Line yAxisId="right" type="monotone" dataKey="roi" stroke="#10B981" strokeWidth={3} name="ROI (x)" />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </div>
 
-          {/* Creative Details Table */}
-          <Table>
-            <TableHeader>
-              <TableRow className="border-[#6D28D9]/20">
-                <TableHead className="text-purple-200">Creative Type</TableHead>
-                <TableHead className="text-purple-200">CTR (%)</TableHead>
-                <TableHead className="text-purple-200">Conversions</TableHead>
-                <TableHead className="text-purple-200">Spend (₹K)</TableHead>
-                <TableHead className="text-purple-200">ROI (x)</TableHead>
-                <TableHead className="text-purple-200">Performance</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {creativeData.map((row, index) => (
-                <TableRow key={index} className="border-[#6D28D9]/10 hover:bg-[#2D1B69]/20">
-                  <TableCell className="text-purple-200 font-medium">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: row.color }}></div>
-                      {row.type}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-purple-200">{row.ctr}%</TableCell>
-                  <TableCell className="text-purple-200">{formatCurrency(row.conversions)}</TableCell>
-                  <TableCell className="text-purple-200">₹{row.spend}K</TableCell>
-                  <TableCell className="text-purple-200">{row.roi}x</TableCell>
-                  <TableCell>
-                    <Badge className={getPerformanceColor(row.roi >= 4.0 ? 'excellent' : row.roi >= 3.0 ? 'good' : 'average')}>
-                      {row.roi >= 4.0 ? 'excellent' : row.roi >= 3.0 ? 'good' : 'average'}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Executive Summary Component matching the image design
+// Executive Summary Component
 const ExecutiveSummary: React.FC = () => {
   const summaryMetrics = [
     {
@@ -2702,7 +2608,7 @@ const ExecutiveSummary: React.FC = () => {
                 </div>
                 <span className="text-xs text-purple-400/70">vs previous period</span>
               </div>
-
+              
               {/* Subtle glow effect */}
               <div className={`absolute -inset-1 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
                 isPositive ? 'bg-emerald-500' : isNegative ? 'bg-red-500' : 'bg-purple-500'
@@ -2714,5 +2620,3 @@ const ExecutiveSummary: React.FC = () => {
     </div>
   );
 };
-
-export default ExecutiveMetrics;
