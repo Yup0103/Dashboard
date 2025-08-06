@@ -489,6 +489,116 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
               </div>
             </div>
           )}
+
+          {/* B2B Lead Generation & Pipeline Metrics (B2B) */}
+          {viewMode === 'b2b' && (
+            <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
+              <CardHeader>
+                <CardTitle className="text-purple-100">B2B Lead Generation & Pipeline Metrics</CardTitle>
+                <CardDescription className="text-purple-300">
+                  Lead quality, pipeline health, ABM performance, and sales metrics
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {/* Enhanced B2B Metrics Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <UsersIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">MQLs Generated</p>
+                    <p className="text-2xl font-bold text-purple-200">1,240</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +15% growth
+                    </Badge>
+                  </div>
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <TrendingUpIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">MQL to SQL Rate</p>
+                    <p className="text-2xl font-bold text-purple-200">28.5%</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      Above target
+                    </Badge>
+                  </div>
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <DollarSignIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Cost per Lead</p>
+                    <p className="text-2xl font-bold text-purple-200">$142</p>
+                    <Badge className="bg-rose-500/20 text-rose-400 mt-2">
+                      +$12 vs target
+                    </Badge>
+                  </div>
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <BarChart3Icon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Pipeline Value</p>
+                    <p className="text-2xl font-bold text-purple-200">$2.8M</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +18% growth
+                    </Badge>
+                  </div>
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <ActivityIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">ABM Engagement</p>
+                    <p className="text-2xl font-bold text-purple-200">85%</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      Top quartile
+                    </Badge>
+                  </div>
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <CalendarIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Sales Cycle</p>
+                    <p className="text-2xl font-bold text-purple-200">42 days</p>
+                    <Badge className="bg-amber-500/20 text-amber-400 mt-2">
+                      +3 days vs target
+                    </Badge>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <TargetIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Lead Quality Score</p>
+                    <p className="text-2xl font-bold text-purple-200">78</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +5%
+                    </Badge>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <BarChart3Icon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Pipeline Value</p>
+                    <p className="text-2xl font-bold text-purple-200">$850.0K</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      12.5% conv.
+                    </Badge>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <PieChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Content Effectiveness</p>
+                    <p className="text-2xl font-bold text-purple-200">82</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +3%
+                    </Badge>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <LineChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Sales Cycle</p>
+                    <p className="text-2xl font-bold text-purple-200">45 days</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      -5 days
+                    </Badge>
+                  </div>
+                  
+                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
+                    <DollarSignIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
+                    <p className="text-sm text-purple-300/80 mb-1">Avg Deal Size</p>
+                    <p className="text-2xl font-bold text-purple-200">$8.5K</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
+                      +8%
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
           {/* Chart Section - Executive with Collapsible */}
           <div className="relative">
             <div className="bg-gradient-to-br from-[#1A0B2E]/90 to-[#2D1B69]/80 backdrop-blur-md rounded-xl border border-purple-500/20">
@@ -1371,118 +1481,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ dateRange, view
             </Card>
           )}
 
-          {/* B2B Specific Metrics (shown when B2B mode is selected) */}
-          {viewMode === 'b2b' && (
-            <Card className="bg-[#1A0B2E] border-[#6D28D9]/20">
-              <CardHeader>
-                <CardTitle className="text-purple-100">B2B Lead Generation & Pipeline Metrics</CardTitle>
-                <CardDescription className="text-purple-300">
-                  Lead quality, pipeline health, ABM performance, and sales metrics
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {/* Enhanced B2B Metrics Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <UsersIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">MQLs Generated</p>
-                    <p className="text-2xl font-bold text-purple-200">1,240</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      +15% growth
-                    </Badge>
-                  </div>
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <TrendingUpIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">MQL to SQL Rate</p>
-                    <p className="text-2xl font-bold text-purple-200">28.5%</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      Above target
-                    </Badge>
-                  </div>
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <DollarSignIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Cost per Lead</p>
-                    <p className="text-2xl font-bold text-purple-200">$142</p>
-                    <Badge className="bg-rose-500/20 text-rose-400 mt-2">
-                      +$12 vs target
-                    </Badge>
-                  </div>
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <BarChart3Icon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Pipeline Value</p>
-                    <p className="text-2xl font-bold text-purple-200">$2.8M</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      +18% growth
-                    </Badge>
-                  </div>
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <ActivityIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">ABM Engagement</p>
-                    <p className="text-2xl font-bold text-purple-200">85%</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      Top quartile
-                    </Badge>
-                  </div>
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <CalendarIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Sales Cycle</p>
-                    <p className="text-2xl font-bold text-purple-200">42 days</p>
-                    <Badge className="bg-amber-500/20 text-amber-400 mt-2">
-                      +3 days vs target
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* Legacy B2B Metrics */}
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <TargetIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Lead Quality Score</p>
-                    <p className="text-2xl font-bold text-purple-200">{mockData.b2bMetrics.leadQuality.score}</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      +{mockData.b2bMetrics.leadQuality.trend === 'up' ? '5' : '-2'}%
-                    </Badge>
-                  </div>
-                  
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <BarChart3Icon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Pipeline Value</p>
-                    <p className="text-2xl font-bold text-purple-200">${(mockData.b2bMetrics.pipelineHealth.value / 1000).toFixed(1)}K</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      {mockData.b2bMetrics.pipelineHealth.conversion}% conv.
-                    </Badge>
-                  </div>
-                  
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <PieChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Content Effectiveness</p>
-                    <p className="text-2xl font-bold text-purple-200">{mockData.b2bMetrics.contentEffectiveness.score}</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      +{mockData.b2bMetrics.contentEffectiveness.trend === 'up' ? '3' : '-1'}%
-                    </Badge>
-                  </div>
-                  
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <LineChartIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Sales Cycle</p>
-                    <p className="text-2xl font-bold text-purple-200">{mockData.b2bMetrics.salesCycle.days} days</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      {mockData.b2bMetrics.salesCycle.trend === 'down' ? '-5' : '+2'} days
-                    </Badge>
-                  </div>
-                  
-                  <div className="text-center p-4 bg-[#2D1B69]/30 rounded-lg">
-                    <DollarSignIcon className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-                    <p className="text-sm text-purple-300/80 mb-1">Avg Deal Size</p>
-                    <p className="text-2xl font-bold text-purple-200">${(mockData.b2bMetrics.dealSize.average / 1000).toFixed(1)}K</p>
-                    <Badge className="bg-emerald-500/20 text-emerald-400 mt-2">
-                      +{mockData.b2bMetrics.dealSize.trend === 'up' ? '8' : '-3'}%
-                    </Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+          
         </div>
       </div>
     </div>
