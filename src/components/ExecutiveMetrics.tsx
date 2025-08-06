@@ -1274,35 +1274,34 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
             </div>
 
             <div className="space-y-8">
-              {/* Overall Summary Cards */}
-              <OverallSummaryCards />
+              {/* Platform Performance Table */}
+              <PlatformTable />
 
-              {/* Enhanced Platform and Channel Performance */}
-              <EnhancedPlatformTable />
-              <EnhancedChannelTable />
+              {/* Channel Performance Table */}
+              <ChannelTable />
 
-              {/* Enhanced Trend Analysis */}
-              <EnhancedTrendChart />
+              {/* Top Campaigns Table */}
+              <TopCampaignsTable />
 
-              {/* Enhanced Customer Acquisition */}
-              <EnhancedCACCLVChart />
+              {/* Trend Analysis Chart */}
+              <TrendChart />
 
-              {/* Enhanced Top Campaigns */}
-              <EnhancedTopCampaignsTable />
+              {/* Customer Acquisition vs CLV Chart */}
+              <CACCLVChart />
 
-              {/* Enhanced Geography/Region Analysis */}
-              <EnhancedGeographyMap />
+              {/* Geography Performance Map */}
+              <GeographyMap />
 
-              {/* Enhanced Marketing Funnel */}
-              <EnhancedMarketingFunnelChart />
+              {/* Marketing Funnel Chart */}
+              <MarketingFunnelChart />
 
-              {/* Enhanced Attribution Summary */}
-              <EnhancedAttributionSummary />
+              {/* Detailed Attribution Analysis */}
+              <DetailedAttribution />
 
               {/* Enhanced Budget Utilization */}
               <EnhancedBudgetUtilization />
 
-              {/* Enhanced Forecasting */}
+              {/* Enhanced Forecasting View */}
               <EnhancedForecastingView />
 
               {/* Enhanced Audience Insights */}
@@ -1310,11 +1309,6 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
 
               {/* Enhanced Creative Performance */}
               <EnhancedCreativePerformance />
-
-              {/* Legacy Components for Reference */}
-              <SalesPerformanceDeepDive />
-              <MarketingEfficiencyDashboard />
-              <TrendAnalysisForecasting />
             </div>
           </div>
         </div>
@@ -1324,6 +1318,85 @@ const ExecutiveMetrics: React.FC<ExecutiveMetricsProps> = ({ dateRange }) => {
 };
 
 // Additional specialized components for B2C views
+
+// Overall Summary Cards Component
+const OverallSummaryCards: React.FC = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <Card className="glass-effect metric-card-hover">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-purple-300/80">Total Revenue</p>
+              <p className="text-2xl font-bold text-purple-200">₹8.7M</p>
+              <div className="flex items-center gap-1 mt-2">
+                <TrendingUpIcon className="w-4 h-4 text-emerald-400" />
+                <span className="text-emerald-400 text-sm font-medium">+18.3%</span>
+              </div>
+            </div>
+            <div className="p-3 bg-emerald-500/20 rounded-lg">
+              <DollarSignIcon className="w-6 h-6 text-emerald-400" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="glass-effect metric-card-hover">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-purple-300/80">Total Conversions</p>
+              <p className="text-2xl font-bold text-purple-200">12.4K</p>
+              <div className="flex items-center gap-1 mt-2">
+                <TrendingUpIcon className="w-4 h-4 text-emerald-400" />
+                <span className="text-emerald-400 text-sm font-medium">+22.1%</span>
+              </div>
+            </div>
+            <div className="p-3 bg-blue-500/20 rounded-lg">
+              <TargetIcon className="w-6 h-6 text-blue-400" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="glass-effect metric-card-hover">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-purple-300/80">ROI</p>
+              <p className="text-2xl font-bold text-purple-200">3.6x</p>
+              <div className="flex items-center gap-1 mt-2">
+                <TrendingUpIcon className="w-4 h-4 text-emerald-400" />
+                <span className="text-emerald-400 text-sm font-medium">+5.2%</span>
+              </div>
+            </div>
+            <div className="p-3 bg-purple-500/20 rounded-lg">
+              <TrendingUpIcon className="w-6 h-6 text-purple-400" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="glass-effect metric-card-hover">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-purple-300/80">Total Customers</p>
+              <p className="text-2xl font-bold text-purple-200">45.2K</p>
+              <div className="flex items-center gap-1 mt-2">
+                <TrendingUpIcon className="w-4 h-4 text-emerald-400" />
+                <span className="text-emerald-400 text-sm font-medium">+15.7%</span>
+              </div>
+            </div>
+            <div className="p-3 bg-orange-500/20 rounded-lg">
+              <UsersIcon className="w-6 h-6 text-orange-400" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
 
 // Platform Performance Table Component
 const PlatformTable: React.FC = () => {
