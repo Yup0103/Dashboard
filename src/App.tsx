@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
@@ -18,6 +18,14 @@ import AgentCustomization from './pages/AgentCustomization';
 
 const queryClient = new QueryClient();
 
+// Simple test component
+const TestPage = () => (
+  <div className="p-8 text-white bg-blue-900">
+    <h1>Test Page - Routing is working!</h1>
+    <p>If you can see this, the basic routing is functional.</p>
+  </div>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -28,7 +36,6 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/analytics" element={<Index />} />
-
             <Route path="/b2b-dashboard" element={<B2BDashboard />} />
             <Route path="/ai-insights" element={<AIInsights />} />
             <Route path="/ai-assistant" element={<AIAssistant />} />
@@ -44,6 +51,9 @@ const App = () => (
             <Route path="/insights" element={<div className="p-8">Insights Page</div>} />
             <Route path="/calendar" element={<div className="p-8">Calendar Page</div>} />
             <Route path="/settings" element={<div className="p-8">Settings Page</div>} />
+            <Route path="/test" element={<TestPage />} />
+            {/* Catch-all route to redirect any unmatched paths to dashboard */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
       </BrowserRouter>

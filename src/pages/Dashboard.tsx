@@ -12,8 +12,6 @@ import {
   Legend
 } from 'recharts';
 import { DollarSignIcon, MousePointerClickIcon, TargetIcon } from "lucide-react";
-// import { MetricCard } from "@/components/MetricCard";
-// import { PerformanceChart } from "@/components/PerformanceChart";
 import { PlatformSpendChart } from "@/components/PlatformSpendChart";
 import { TopCampaignsTable } from "@/components/TopCampaignsTable";
 

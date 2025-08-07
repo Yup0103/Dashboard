@@ -4,6 +4,10 @@
 
 A modern, responsive analytics dashboard built with React, TypeScript, and Tailwind CSS. This dashboard provides comprehensive campaign performance metrics and analytics visualization.
 
+## 🌐 Live Demo
+
+Visit the live application: [Campaign Analytics Dashboard](https://Yup0103.github.io/Dashboard/)
+
 ## Features
 
 - **Campaign Performance Overview**
@@ -22,6 +26,52 @@ A modern, responsive analytics dashboard built with React, TypeScript, and Tailw
   - Dynamic metric toggles
   - Real-time data updates
   - Performance trend indicators
+
+- **AI-Powered Features**
+  - Smart recommendations for campaign optimization
+  - AI Assistant for data analysis
+  - Automated workflow management
+  - B2B-specific analytics
+
+## 🚀 Deployment
+
+### GitHub Pages Deployment
+
+This project is configured for automatic deployment to GitHub Pages.
+
+#### Prerequisites
+
+1. **GitHub Repository**: Ensure your code is in a GitHub repository
+2. **GitHub Pages Enabled**: Enable GitHub Pages in your repository settings
+
+#### Automatic Deployment (Recommended)
+
+1. **Push to Main Branch**: The application will automatically deploy when you push to the `main` or `master` branch
+2. **GitHub Actions**: The workflow will build and deploy your application automatically
+3. **Access Your App**: Visit `https://Yup0103.github.io/Dashboard/`
+
+#### Manual Deployment
+
+If you prefer manual deployment:
+
+```bash
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
+```
+
+#### Configuration
+
+1. **Update Repository Name**: Replace `Yup0103` in `package.json` with your actual GitHub username
+2. **Repository Settings**: 
+   - Go to Settings > Pages
+   - Set Source to "GitHub Actions"
+   - Ensure the repository is public
 
 ## Running Locally
 
@@ -44,8 +94,8 @@ A modern, responsive analytics dashboard built with React, TypeScript, and Tailw
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/campaign-analytics-dashboard.git
-   cd campaign-analytics-dashboard
+   git clone https://github.com/Yup0103/Dashboard.git
+   cd Dashboard
    ```
 
 2. **Install Dependencies**
@@ -109,37 +159,9 @@ A modern, responsive analytics dashboard built with React, TypeScript, and Tailw
 - Shadcn/ui Components
 - React Simple Maps
 - Lucide Icons
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/campaign-analytics-dashboard.git
-cd campaign-analytics-dashboard
-```
-
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+- Recharts
+- React Router DOM
+- Vite
 
 ## Project Structure
 
