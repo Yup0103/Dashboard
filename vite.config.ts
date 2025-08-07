@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  base: '/Dashboard/', // Added for GitHub Pages deployment
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
